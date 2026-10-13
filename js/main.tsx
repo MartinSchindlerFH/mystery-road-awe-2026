@@ -5,7 +5,6 @@ import { handleHashChange } from "./app/router.js";
 
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { App } from "./basic-react-component";
 const container = document.getElementById("root");
 
 if (!container) {
@@ -13,7 +12,6 @@ if (!container) {
 }
 createRoot(container).render(
   <StrictMode>
-    <App />
   </StrictMode>
 );
 
