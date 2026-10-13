@@ -1,4 +1,4 @@
-// Domain types matching the shape of public/data/*.json. 
+// Domain types matching the shape of public/data/*.json.
 import type { StatusValue, RelevanceValue } from "./constants.js";
 
 export type PersonId = string; // e.g. "patch-vector"
@@ -28,7 +28,7 @@ export interface Evidence {
   id: EvidenceId;
   type: string;
   title: string;
-  timestamp: string; 
+  timestamp: string;
   summary: string;
   content: string;
   personIds: PersonId[];
@@ -43,7 +43,7 @@ export type TimelineCertainty = "confirmed" | "reported" | "contradictory";
 
 export interface TimelineEvent {
   id: TimelineId;
-  time: string; 
+  time: string;
   title: string;
   description: string;
   type: string;
@@ -58,7 +58,7 @@ export interface CaseData {
   title: string;
   subtitle: string;
   status: string;
-  opened: string; 
+  opened: string;
   summary: string;
   location: string;
   leadInvestigator: string;

@@ -2,23 +2,14 @@ import { loadBookmarksFromStorage, loadNotesFromStorage } from "./services/stora
 import { setupEventListeners } from "./app/events.js";
 import { loadAllData } from "./services/data.js";
 import { handleHashChange } from "./app/router.js";
-
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-const container = document.getElementById("root");
-
-if (!container) {
-  throw new Error("Missing #root mount point");
-}
-createRoot(container).render(
-  <StrictMode>
-  </StrictMode>
-);
+import { initialisePages } from "./render-pages";
 
 async function initApp(): Promise<void> {
   loadBookmarksFromStorage();
   loadNotesFromStorage();
   setupEventListeners();
+
+  initialisePages();
 
   await loadAllData();
   handleHashChange();
