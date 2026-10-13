@@ -20,6 +20,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: linting
-        run: eslint .
+        run: npm run lint
       - name: format check
-        run: prettier --check .
+        run: npm run format:check
