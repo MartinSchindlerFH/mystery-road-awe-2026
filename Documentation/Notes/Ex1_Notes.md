@@ -30,9 +30,9 @@ Why navigateTo got a file to itself:
     This actually cost me like an hour and a half (navTo in general), because I couldn't find why _window.navigateTo_ broke after making the app a module.
 
 ### Questions for Leon
-Q: classic <script> vs <script type="module">, two behavioural differences ?
+Q: classic script> vs script type="module">, two behavioural differences ?
 A: Basically a scope issue. The classic script's own top level was the global scope at the same time, so navigateTo automatically became window.navigateTo. Once the module came in play, that was not the case anymore.  
-   Also, the classic version of <script> is blocking, so when the HTML parser reaches that tag, it stops, downloads the file, runs it fully, and only then keeps parsing. Modules are always defered, meaning that they fetch in parallel and are executed after the document is parsed.
+   Also, the classic version of script> is blocking, so when the HTML parser reaches that tag, it stops, downloads the file, runs it fully, and only then keeps parsing. Modules are always defered, meaning that they fetch in parallel and are executed after the document is parsed.
 
 Q: allEvidence was a global var. What has to happen now, and what error if I
    forget ?
@@ -96,7 +96,7 @@ Reproduction:
     3. One per click, five total: one per view. Doesn't break navigation
 
 Root cause:
-    for (var i = 0; i < navButtons.length; i++) {
+    for (var i = 0; i \< navButtons.length; i++) {
       navButtons[i].addEventListener("click", function () {
         var targetView = navButtons[i].getAttribute("data-view");
 
