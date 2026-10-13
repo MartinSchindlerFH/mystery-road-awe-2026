@@ -8,7 +8,7 @@
   "author": "martinschindler",
   "scripts": {
     "dev": "vite",
-    "build": "tsc --noEmit && vite build --jsx",
+    "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "lint:check": "eslint .",
