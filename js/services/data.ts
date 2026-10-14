@@ -75,6 +75,6 @@ export async function loadAllData(): Promise<void> {
   }
 
   // Fire-and-forget. Each loader has its own try/catch.
-  void loadEvidenceData();
-  void loadTimelineData();
+  await loadEvidenceData();
+  await loadTimelineData();
 }
