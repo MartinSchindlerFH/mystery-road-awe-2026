@@ -2,14 +2,14 @@ import { loadBookmarksFromStorage, loadNotesFromStorage } from "./services/stora
 import { setupEventListeners } from "./app/events.js";
 import { loadAllData } from "./services/data.js";
 import { handleHashChange } from "./app/router.js";
-import { initialisePages } from "./render-pages";
+import { initReact } from "./app/App";
 
 async function initApp(): Promise<void> {
   loadBookmarksFromStorage();
   loadNotesFromStorage();
   setupEventListeners();
 
-  initialisePages();
+  initReact();
 
   await loadAllData();
   handleHashChange();

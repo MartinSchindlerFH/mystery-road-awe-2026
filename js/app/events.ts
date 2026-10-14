@@ -16,14 +16,6 @@ import { isViewName } from "../core/constants.js";
 export function setupEventListeners(): void {
   window.addEventListener("hashchange", handleHashChange);
 
-  // navigation
-  document.querySelectorAll<HTMLElement>(".nav-btn").forEach((button) => {
-    button.addEventListener("click", (event) => {
-      const view = (event.currentTarget as HTMLElement).dataset.view;
-      if (view && isViewName(view)) navigateTo(view);
-    });
-  });
-
   // shortcut buttons on the dashboard
   document.querySelectorAll<HTMLElement>("[data-nav]").forEach((button) => {
     button.addEventListener("click", (event) => {
