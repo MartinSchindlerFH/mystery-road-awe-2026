@@ -1,5 +1,5 @@
-import type { Evidence } from "../../js/types.js";
-import { Badge, statusTone } from "./Badge.jsx";
+import type { Evidence } from "../../../js/types.js";
+import { Badge, statusTone } from "../../components/Badge.jsx";
 
 type RecentEvidenceListProps = {
   evidence: Evidence[];

@@ -56,3 +56,19 @@ be enabled. The layout targets common desktop and tablet widths.
 This is an existing brownfield application, not a fresh scaffold. It works for everyday use, but
 you should expect to find rough edges, inconsistent patterns, and a handful of bugs as you work
 with it — that discovery process is part of the course.
+
+## React source layout (`src/`)
+
+The React version (`react.html` + `src/`) is organised by feature, not by file type:
+
+    src/main.tsx, App.tsx    entry point and the component that loads data and picks the page
+    src/shell/               header, nav button, footer, loading overlay: the frame around every page
+    src/routing/             view names and the current-view hook
+    src/data/                case file types, loading, stored bookmarks
+    src/components/          presentational components used by two or more features
+    src/features/<name>/     one folder per view: its page component and everything only it uses
+                             (dashboard, peopleLocations, timeline, evidence, workspace)
+
+Rule: a component lives in the feature folder of the only page that imports it. The
+moment a second feature imports it, it moves to `src/components/`. `shell/`, `routing/`
+and `data/` are not features; they are the infrastructure every page sits in.

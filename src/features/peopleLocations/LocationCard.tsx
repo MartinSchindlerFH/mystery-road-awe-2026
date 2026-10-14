@@ -1,4 +1,4 @@
-import type { CaseLocation } from "../../js/types.js";
+import type { CaseLocation } from "../../../js/types.js";
 
 type LocationCardProps = {
   location: CaseLocation;

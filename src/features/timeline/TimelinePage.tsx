@@ -1,6 +1,6 @@
-import type { CaseFile } from "../caseData.js";
-import { PageSection } from "../components/PageSection.jsx";
-import { TimelineList } from "../components/TimelineList.jsx";
+import type { CaseFile } from "../../data/caseData.js";
+import { PageSection } from "../../components/PageSection.jsx";
+import { TimelineList } from "./TimelineList.jsx";
 
 type TimelinePageProps = {
   file: CaseFile;

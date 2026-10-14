@@ -1,8 +1,9 @@
-import type { CaseFile } from "../caseData.js";
-import { LocationList } from "../components/LocationList.jsx";
-import { PageSection } from "../components/PageSection.jsx";
-import { PeopleList } from "../components/PeopleList.jsx";
-import { TabButton } from "../components/TabButton.jsx";
+import type { CaseFile } from "../../data/caseData.js";
+import { evidenceMentionsPerson } from "../../../js/utils.js";
+import { LocationList } from "./LocationList.jsx";
+import { PageSection } from "../../components/PageSection.jsx";
+import { PeopleList, type PersonEntry } from "./PeopleList.jsx";
+import { TabButton } from "./TabButton.jsx";
 
 type PeopleTab = "people" | "locations";
 
@@ -17,6 +18,15 @@ function readInitialTab(): PeopleTab {
 
 function goToTab(tab: PeopleTab): void {
   window.location.search = "?tab=" + tab;
+}
+
+function countEvidence(file: CaseFile): PersonEntry[] {
+  return file.people.map((person) => ({
+    person,
+    evidenceCount: file.evidence.filter((ev) =>
+      evidenceMentionsPerson(ev, person),
+    ).length,
+  }));
 }
 
 export function PeoplePage({ file }: PeoplePageProps) {
@@ -37,7 +47,7 @@ export function PeoplePage({ file }: PeoplePageProps) {
         />
       </div>
       {tab === "people" ? (
-        <PeopleList people={file.people} evidence={file.evidence} />
+        <PeopleList entries={countEvidence(file)} />
       ) : (
         <LocationList locations={file.locations} />
       )}

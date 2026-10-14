@@ -1,4 +1,4 @@
-import type { ViewName } from "../views.js";
+import type { ViewName } from "../routing/views.js";
 
 type NavButtonProps = {
   view: ViewName;

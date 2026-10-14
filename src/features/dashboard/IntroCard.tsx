@@ -1,4 +1,4 @@
-import { navigateTo, type ViewName } from "../views.js";
+import { navigateTo, type ViewName } from "../../routing/views.js";
 
 type GoToButtonProps = {
   view: ViewName;

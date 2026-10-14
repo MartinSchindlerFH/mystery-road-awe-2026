@@ -1,4 +1,4 @@
-import { VIEWS, navigateTo, type ViewName } from "../views.js";
+import { VIEWS, navigateTo, type ViewName } from "../routing/views.js";
 import { NavButton } from "./NavButton.jsx";
 
 type AppHeaderProps = {

@@ -1,5 +1,5 @@
-import type { CaseData } from "../../js/types.js";
-import { Badge } from "./Badge.jsx";
+import type { CaseData } from "../../../js/types.js";
+import { Badge } from "../../components/Badge.jsx";
 
 type CaseSummaryCardProps = {
   caseData: CaseData;

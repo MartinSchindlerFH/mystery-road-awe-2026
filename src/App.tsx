@@ -1,14 +1,14 @@
-import { AppFooter } from "./components/AppFooter.jsx";
-import { AppHeader } from "./components/AppHeader.jsx";
-import { LoadingOverlay } from "./components/LoadingOverlay.jsx";
-import { DashboardPage } from "./pages/DashboardPage.jsx";
-import { EvidencePage } from "./pages/EvidencePage.jsx";
-import { PeoplePage } from "./pages/PeoplePage.jsx";
-import { TimelinePage } from "./pages/TimelinePage.jsx";
-import { WorkspacePage } from "./pages/WorkspacePage.jsx";
-import { useCaseFile, type CaseFileState } from "./useCaseFile.js";
-import { useCurrentView } from "./useCurrentView.js";
-import type { ViewName } from "./views.js";
+import { AppFooter } from "./shell/AppFooter.jsx";
+import { AppHeader } from "./shell/AppHeader.jsx";
+import { LoadingOverlay } from "./shell/LoadingOverlay.jsx";
+import { DashboardPage } from "./features/dashboard/DashboardPage.jsx";
+import { EvidencePage } from "./features/evidence/EvidencePage.jsx";
+import { PeoplePage } from "./features/peopleLocations/PeoplePage.jsx";
+import { TimelinePage } from "./features/timeline/TimelinePage.jsx";
+import { WorkspacePage } from "./features/workspace/WorkspacePage.jsx";
+import { useCaseFile, type CaseFileState } from "./data/useCaseFile.js";
+import { useCurrentView } from "./routing/useCurrentView.js";
+import type { ViewName } from "./routing/views.js";
 
 type PageProps = {
   view: ViewName;

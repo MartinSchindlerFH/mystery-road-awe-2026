@@ -1,11 +1,11 @@
-import type { CaseFile } from "../caseData.js";
-import { CaseSummaryCard } from "../components/CaseSummaryCard.jsx";
-import { IntroCard } from "../components/IntroCard.jsx";
-import { PageSection } from "../components/PageSection.jsx";
-import { RecentEvidenceList } from "../components/RecentEvidenceList.jsx";
-import { RecentTimelineList } from "../components/RecentTimelineList.jsx";
-import { ReviewProgress } from "../components/ReviewProgress.jsx";
-import { StatCard } from "../components/StatCard.jsx";
+import type { CaseFile } from "../../data/caseData.js";
+import { CaseSummaryCard } from "./CaseSummaryCard.jsx";
+import { IntroCard } from "./IntroCard.jsx";
+import { PageSection } from "../../components/PageSection.jsx";
+import { RecentEvidenceList } from "./RecentEvidenceList.jsx";
+import { RecentTimelineList } from "./RecentTimelineList.jsx";
+import { ReviewProgress } from "./ReviewProgress.jsx";
+import { StatCard } from "./StatCard.jsx";
 
 type DashboardPageProps = {
   file: CaseFile;

@@ -1,4 +1,4 @@
-import type { Person } from "../../js/types.js";
+import type { Person } from "../../../js/types.js";
 
 type PersonCardProps = {
   person: Person;

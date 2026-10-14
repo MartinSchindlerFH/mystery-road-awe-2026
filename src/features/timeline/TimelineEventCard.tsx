@@ -1,6 +1,6 @@
-import type { TimelineEvent } from "../../js/types.js";
-import { formatDate } from "../../js/utils.js";
-import { Badge, certaintyTone } from "./Badge.jsx";
+import type { TimelineEvent } from "../../../js/types.js";
+import { formatDate } from "../../../js/utils.js";
+import { Badge, certaintyTone } from "../../components/Badge.jsx";
 
 type TimelineEventCardProps = {
   event: TimelineEvent;
