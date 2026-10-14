@@ -1,7 +1,7 @@
 // All network access stuff
 import { state } from "../core/state.js";
 import type { CaseData, Person, Location, Evidence, TimelineEvent } from "../core/types.js";
-import { populateAllDropdowns } from "../ui/dropdowns.js";
+import { populateAllDropdowns } from "../ui/elements/dropdowns.js";
 import { applyStoredBookmarkFlags, renderEvidenceList } from "../views/evidence.js";
 import { renderTimeline } from "../views/timeline.js";
 

@@ -1,8 +1,8 @@
 // Quick-view modal, opened from the timeline.
-import { findEvidenceById } from "../core/lookup.js";
-import { formatDate } from "../utils/format.js";
-import { showEvidence } from "../views/evidence.js";
-import type { EvidenceId } from "../core/types.js";
+import { findEvidenceById } from "../../core/lookup.js";
+import { formatDate } from "../../utils/format.js";
+import { showEvidence } from "../../views/evidence.js";
+import type { EvidenceId } from "../../core/types.js";
 
 export function openEvidenceModal(evidenceId: EvidenceId): void {
   const ev = findEvidenceById(evidenceId);

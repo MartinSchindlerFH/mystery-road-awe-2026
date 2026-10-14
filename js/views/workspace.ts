@@ -2,7 +2,7 @@
 import { state } from "../core/state.js";
 import { readHypothesisDraft, saveHypothesisDraft } from "../services/storage.js";
 import type { HypothesisDraft } from "../services/storage.js";
-import { populateHypothesisDropdowns } from "../ui/dropdowns.js";
+import { populateHypothesisDropdowns } from "../ui/elements/dropdowns.js";
 import { showEvidence } from "./evidence.js";
 import { escapeHtml } from "../utils/html.js";
 import { SAVED_MESSAGE_MS } from "../core/constants.js";

@@ -1,5 +1,5 @@
 // Fills every <select> in the page from the loaded case data.
-import { state } from "../core/state.js";
+import { state } from "../../core/state.js";
 
 type SelectOption = [value: string, label: string];
 

@@ -2,7 +2,7 @@
 import { state } from "../core/state.js";
 import { locationLabel } from "../core/lookup.js";
 import { formatDate, certaintyBadgeClass } from "../utils/format.js";
-import { openEvidenceModal } from "../ui/modal.js";
+import { openEvidenceModal } from "../ui/elements/modal.js";
 
 export function renderTimeline(): void {
   const container = document.getElementById("timelineContainer");
