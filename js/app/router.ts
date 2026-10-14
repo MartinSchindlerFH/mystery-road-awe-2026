@@ -21,7 +21,7 @@ export function handleHashChange(): void {
     }
   });
 
- if (hash === "evidence") {
+  if (hash === "evidence") {
     renderEvidenceList();
   } else if (hash === "people") {
     renderPeople();

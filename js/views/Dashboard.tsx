@@ -171,7 +171,7 @@ function RecentEvents() {
       {recentTimeline.map((evt) => (
         <div className="mini-list-item">
           <strong>{formatDate(evt.time)}</strong>
-          <br/>
+          <br />
           {evt.title}
         </div>
       ))}
