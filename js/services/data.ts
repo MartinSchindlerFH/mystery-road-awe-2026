@@ -1,7 +1,6 @@
 // All network access stuff
 import { state } from "../core/state.js";
 import type { CaseData, Person, Location, Evidence, TimelineEvent } from "../core/types.js";
-import { renderDashboard } from "../views/dashboard.js";
 import { populateAllDropdowns } from "../ui/dropdowns.js";
 import { applyStoredBookmarkFlags, renderEvidenceList } from "../views/evidence.js";
 import { renderTimeline } from "../views/timeline.js";
@@ -34,7 +33,6 @@ async function loadCorePeopleAndLocations(): Promise<void> {
   state.allLocations = await fetchJson<Location[]>("data/locations.json");
 
   // Evidence and timeline have not loaded yet, so some counts briefly read 0.
-  renderDashboard();
   populateAllDropdowns();
 }
 
@@ -42,7 +40,6 @@ async function loadEvidenceData(): Promise<void> {
   try {
     state.allEvidence = await fetchJson<Evidence[]>("data/evidence.json");
     applyStoredBookmarkFlags();
-    renderDashboard();
     populateAllDropdowns();
   } catch (err) {
     console.error("Failed to load evidence.json", err);
@@ -56,7 +53,6 @@ async function loadEvidenceData(): Promise<void> {
 async function loadTimelineData(): Promise<void> {
   try {
     state.allTimeline = await fetchJson<TimelineEvent[]>("data/timeline.json");
-    renderDashboard();
     if (state.currentPage === "timeline") renderTimeline();
     populateAllDropdowns();
   } catch (err) {

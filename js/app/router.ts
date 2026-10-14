@@ -1,7 +1,6 @@
 // Hash-based routing. Decides which view is visible and re-renders it on entry.
 import { state } from "../core/state.js";
 import { DEFAULT_VIEW, isViewName } from "../core/constants.js";
-import { renderDashboard } from "../views/dashboard.js";
 import { renderEvidenceList } from "../views/evidence.js";
 import { renderPeople, renderLocations } from "../views/people.js";
 import { renderTimeline } from "../views/timeline.js";
@@ -22,9 +21,7 @@ export function handleHashChange(): void {
     }
   });
 
-  if (hash === "dashboard") {
-    renderDashboard();
-  } else if (hash === "evidence") {
+ if (hash === "evidence") {
     renderEvidenceList();
   } else if (hash === "people") {
     renderPeople();
