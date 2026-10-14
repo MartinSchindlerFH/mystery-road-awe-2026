@@ -13,6 +13,13 @@ export function statusTone(status: string): BadgeTone {
   return "unreviewed";
 }
 
+export function certaintyTone(certainty: string): BadgeTone {
+  if (certainty === "confirmed") return "reviewed";
+  if (certainty === "contradictory") return "critical";
+  if (certainty === "reported") return "flagged";
+  return "unreviewed";
+}
+
 export function Badge({ label, tone }: BadgeProps) {
   return <span className={"badge badge-" + tone}>{label}</span>;
 }

@@ -29,9 +29,9 @@ function Page({ view, caseFile }: PageProps) {
     case "evidence":
       return <EvidencePage />;
     case "people":
-      return <PeoplePage />;
+      return <PeoplePage file={caseFile.file} />;
     case "timeline":
-      return <TimelinePage />;
+      return <TimelinePage file={caseFile.file} />;
     case "workspace":
       return <WorkspacePage />;
   }

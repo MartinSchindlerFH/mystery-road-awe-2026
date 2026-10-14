@@ -1,11 +1,19 @@
-export function TimelinePage() {
+import type { CaseFile } from "../caseData.js";
+import { PageSection } from "../components/PageSection.jsx";
+import { TimelineList } from "../components/TimelineList.jsx";
+
+type TimelinePageProps = {
+  file: CaseFile;
+};
+
+export function TimelinePage({ file }: TimelinePageProps) {
+  const events = file.timeline
+    .slice()
+    .sort((a, b) => new Date(a.time).getTime() - new Date(b.time).getTime());
+
   return (
-    <section>
-      <h2>Investigation Timeline</h2>
-      <p>
-        Not migrated yet. Use the{" "}
-        <a href="index.html#timeline">vanilla version</a>.
-      </p>
-    </section>
+    <PageSection title="Investigation Timeline">
+      <TimelineList events={events} locations={file.locations} />
+    </PageSection>
   );
 }

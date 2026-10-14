@@ -1,6 +1,7 @@
 import type { CaseFile } from "../caseData.js";
 import { CaseSummaryCard } from "../components/CaseSummaryCard.jsx";
 import { IntroCard } from "../components/IntroCard.jsx";
+import { PageSection } from "../components/PageSection.jsx";
 import { RecentEvidenceList } from "../components/RecentEvidenceList.jsx";
 import { RecentTimelineList } from "../components/RecentTimelineList.jsx";
 import { ReviewProgress } from "../components/ReviewProgress.jsx";
@@ -19,8 +20,7 @@ export function DashboardPage({ file, bookmarks }: DashboardPageProps) {
   const recentTimeline = file.timeline.slice(-5).reverse();
 
   return (
-    <section>
-      <h2>Case Dashboard</h2>
+    <PageSection title="Case Dashboard">
       <IntroCard />
       <CaseSummaryCard caseData={file.caseData} />
       <div className="stat-grid">
@@ -35,6 +35,6 @@ export function DashboardPage({ file, bookmarks }: DashboardPageProps) {
         <RecentEvidenceList evidence={recentEvidence} />
         <RecentTimelineList events={recentTimeline} />
       </div>
-    </section>
+    </PageSection>
   );
 }
