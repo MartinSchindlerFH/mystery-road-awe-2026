@@ -1,6 +1,6 @@
 import { createRoot } from "react-dom/client";
 import React, { StrictMode } from "react";
-import { Navbar } from "../ui/navbar";
+import { Navbar } from "../ui/Navbar";
 
 export function initReact() {
   let container = document.getElementById("app-react");
