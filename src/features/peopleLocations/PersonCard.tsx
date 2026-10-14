@@ -1,11 +1,12 @@
+import type { ReactNode } from "react";
 import type { Person } from "../../../js/types.js";
 
 type PersonCardProps = {
   person: Person;
-  evidenceCount: number;
+  children?: ReactNode;
 };
 
-export function PersonCard({ person, evidenceCount }: PersonCardProps) {
+export function PersonCard({ person, children }: PersonCardProps) {
   return (
     <div className="person-card">
       <div className="person-card-header">
@@ -28,12 +29,7 @@ export function PersonCard({ person, evidenceCount }: PersonCardProps) {
         ))}
       </ul>
       <div className="person-statement">&ldquo;{person.statement}&rdquo;</div>
-      <p>
-        {evidenceCount} related evidence item{evidenceCount === 1 ? "" : "s"} -{" "}
-        <button type="button" className="evidence-count-link">
-          view
-        </button>
-      </p>
+      {children}
     </div>
   );
 }

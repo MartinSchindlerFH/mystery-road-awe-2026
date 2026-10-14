@@ -574,6 +574,10 @@ a:focus-visible {
   border-color: var(--color-header-2);
 }
 
+a.nav-btn, a.tab-btn {
+  text-decoration: none;
+}
+
 .locations-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));

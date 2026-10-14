@@ -1,5 +1,6 @@
 import type { TimelineEvent } from "../../../js/types.js";
 import { formatDate } from "../../../js/utils.js";
+import { Panel } from "./Panel.jsx";
 
 type RecentTimelineListProps = {
   events: TimelineEvent[];
@@ -7,8 +8,7 @@ type RecentTimelineListProps = {
 
 export function RecentTimelineList({ events }: RecentTimelineListProps) {
   return (
-    <div className="dashboard-panel">
-      <h3>Recent timeline events</h3>
+    <Panel title="Recent timeline events">
       {events.length === 0 && <p>No timeline events loaded yet.</p>}
       {events.map((evt) => (
         <div key={evt.id} className="mini-list-item">
@@ -17,6 +17,6 @@ export function RecentTimelineList({ events }: RecentTimelineListProps) {
           {evt.title}
         </div>
       ))}
-    </div>
+    </Panel>
   );
 }

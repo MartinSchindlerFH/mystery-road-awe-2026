@@ -1,3 +1,5 @@
+import { Panel } from "./Panel.jsx";
+
 type ReviewProgressProps = {
   reviewed: number;
   total: number;
@@ -7,8 +9,7 @@ export function ReviewProgress({ reviewed, total }: ReviewProgressProps) {
   const percent = total === 0 ? 0 : Math.round((reviewed / total) * 100);
 
   return (
-    <div className="dashboard-panel">
-      <h3>Review progress</h3>
+    <Panel title="Review progress">
       <div className="progress-bar-outer">
         <div
           className="progress-bar-inner"
@@ -16,6 +17,6 @@ export function ReviewProgress({ reviewed, total }: ReviewProgressProps) {
         ></div>
       </div>
       <p>{percent}% of evidence reviewed</p>
-    </div>
+    </Panel>
   );
 }

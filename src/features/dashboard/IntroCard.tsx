@@ -1,16 +1,17 @@
-import { navigateTo, type ViewName } from "../../routing/views.js";
+import { useNavigate } from "react-router";
 
 type GoToButtonProps = {
-  view: ViewName;
+  to: string;
   label: string;
 };
 
-function GoToButton({ view, label }: GoToButtonProps) {
+function GoToButton({ to, label }: GoToButtonProps) {
+  const navigate = useNavigate();
   return (
     <button
       type="button"
       className="btn btn-secondary btn-small"
-      onClick={() => navigateTo(view)}
+      onClick={() => navigate(to)}
     >
       {label}
     </button>
@@ -33,7 +34,7 @@ export function IntroCard() {
             Search, filter, and sort every evidence item. Open one for full
             details, related people and locations, and to add a private note.
           </p>
-          <GoToButton view="evidence" label="Go to Evidence" />
+          <GoToButton to="/evidence" label="Go to Evidence" />
         </div>
         <div className="howto-item">
           <h4>2. People &amp; Locations</h4>
@@ -41,7 +42,7 @@ export function IntroCard() {
             Read profiles and statements from the six team members involved, and
             look up the six key locations in the investigation.
           </p>
-          <GoToButton view="people" label="Go to People & Locations" />
+          <GoToButton to="/team/people" label="Go to People & Locations" />
         </div>
         <div className="howto-item">
           <h4>3. Timeline</h4>
@@ -50,7 +51,7 @@ export function IntroCard() {
             location, or type, and jump straight to the evidence behind any
             event.
           </p>
-          <GoToButton view="timeline" label="Go to Timeline" />
+          <GoToButton to="/timeline" label="Go to Timeline" />
         </div>
         <div className="howto-item">
           <h4>4. Investigator Workspace</h4>
@@ -59,7 +60,7 @@ export function IntroCard() {
             who you suspect, why, and how confident you are. It is saved in your
             browser when you click save.
           </p>
-          <GoToButton view="workspace" label="Go to Workspace" />
+          <GoToButton to="/workspace" label="Go to Workspace" />
         </div>
       </div>
     </div>

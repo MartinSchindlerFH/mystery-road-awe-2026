@@ -1,11 +1,7 @@
-import { VIEWS, navigateTo, type ViewName } from "../routing/views.js";
-import { NavButton } from "./NavButton.jsx";
+import { VIEWS } from "../routing/views.js";
+import { NavItem } from "./NavItem.jsx";
 
-type AppHeaderProps = {
-  currentView: ViewName;
-};
-
-export function AppHeader({ currentView }: AppHeaderProps) {
+export function AppHeader() {
   return (
     <header className="app-header">
       <div className="header-inner">
@@ -24,13 +20,7 @@ export function AppHeader({ currentView }: AppHeaderProps) {
         </div>
         <nav className="main-nav" aria-label="Main navigation">
           {VIEWS.map((view) => (
-            <NavButton
-              key={view.id}
-              view={view.id}
-              label={view.label}
-              active={view.id === currentView}
-              onSelect={navigateTo}
-            />
+            <NavItem key={view.path} to={view.path} label={view.label} />
           ))}
         </nav>
       </div>

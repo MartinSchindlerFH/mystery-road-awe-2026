@@ -1,5 +1,6 @@
 import type { Evidence } from "../../../js/types.js";
 import { Badge, statusTone } from "../../components/Badge.jsx";
+import { Panel } from "./Panel.jsx";
 
 type RecentEvidenceListProps = {
   evidence: Evidence[];
@@ -7,8 +8,7 @@ type RecentEvidenceListProps = {
 
 export function RecentEvidenceList({ evidence }: RecentEvidenceListProps) {
   return (
-    <div className="dashboard-panel">
-      <h3>Recent evidence</h3>
+    <Panel title="Recent evidence">
       {evidence.length === 0 && <p>No evidence loaded yet.</p>}
       {evidence.map((ev) => (
         <div key={ev.id} className="mini-list-item">
@@ -16,6 +16,6 @@ export function RecentEvidenceList({ evidence }: RecentEvidenceListProps) {
           <Badge label={ev.status} tone={statusTone(ev.status)} />
         </div>
       ))}
-    </div>
+    </Panel>
   );
 }
