@@ -19,11 +19,12 @@ export function PeopleList({ entries }: PeopleListProps) {
           <p>
             {evidenceCount} related evidence item
             {evidenceCount === 1 ? "" : "s"} -{" "}
-
-            <Link to={"/team/people/" + person.id} className="evidence-count-link" >
+            <Link
+              to={"/team/people/" + person.id}
+              className="evidence-count-link"
+            >
               view
             </Link>
-
           </p>
         </PersonCard>
       ))}

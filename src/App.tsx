@@ -24,14 +24,26 @@ function Pages({ caseFile }: PagesProps) {
 
   return (
     <Routes>
-      <Route path="/" element={<DashboardPage file={file} bookmarks={bookmarks} />} />
+      <Route
+        path="/"
+        element={<DashboardPage file={file} bookmarks={bookmarks} />}
+      />
       <Route path="/evidence" element={<EvidencePage />} />
       <Route path="/team" element={<Navigate to="/team/people" replace />} />
-      <Route path="/team/people" element={<PeoplePage file={file} tab="people" />} />
+      <Route
+        path="/team/people"
+        element={<PeoplePage file={file} tab="people" />}
+      />
 
-      <Route path="/team/people/:personId" element={<PersonDetailPage file={file} />} />
+      <Route
+        path="/team/people/:personId"
+        element={<PersonDetailPage file={file} />}
+      />
 
-      <Route path="/team/locations" element={<PeoplePage file={file} tab="locations" />} />
+      <Route
+        path="/team/locations"
+        element={<PeoplePage file={file} tab="locations" />}
+      />
       <Route path="/timeline" element={<TimelinePage file={file} />} />
       <Route path="/workspace" element={<WorkspacePage />} />
       <Route path="*" element={<NotFoundPage />} />
