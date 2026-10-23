@@ -24,10 +24,10 @@ jobs:
         run: npm ci
 
       - name: Lint
-        run: npm run lint
+        run: npm run lint:check
 
       - name: Type check
-        run: npx tsc
+        run: npm run type:check
 
       - name: Check formatting
-        run: npx prettier --check js src
+        run: npm run format:check

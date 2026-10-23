@@ -7,24 +7,26 @@
   "type": "module",
   "scripts": {
     "dev": "tsc && vite",
-    "build": "tsc && vite build --base=./",
+    "build": "tsc --noEmit && vite build --base=./",
     "preview": "vite preview",
-    "lint": "eslint js src",
+    "type:check": "tsc --noEmit",
+    "lint:check": "eslint js src",
     "lint:fix": "eslint js src --fix",
-    "format": "prettier --write js src",
+    "format:check": "prettier --check js src",
+    "format:fix": "prettier --write js src",
     "start": "serve ."
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/TaliesinTalab/mystery-road-awe-2026.git"
+    "url": "git+https://github.com/MartinSchindlerFH/mystery-road-awe-2026.git"
   },
   "keywords": [],
   "author": "Taliesin Talab",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/TaliesinTalab/mystery-road-awe-2026/issues"
+    "url": "https://github.com/MartinSchindlerFH/mystery-road-awe-2026/issues"
   },
-  "homepage": "https://github.com/TaliesinTalab/mystery-road-awe-2026#readme",
+  "homepage": "https://github.com/MartinSchindlerFH/mystery-road-awe-2026#readme",
   "engines": {
     "node": ">=22.12.0"
   },
