@@ -4,7 +4,7 @@ export function WorkspacePage() {
       <h2>Investigator Workspace</h2>
       <p>
         Not migrated yet. Use the{" "}
-        <a href="index.html#workspace">vanilla version</a>.
+        <a href="v1.html#workspace">vanilla version</a>.
       </p>
     </section>
   );

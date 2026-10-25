@@ -4,7 +4,7 @@ export function EvidencePage() {
       <h2>Evidence Catalogue</h2>
       <p>
         Not migrated yet. Use the{" "}
-        <a href="index.html#evidence">vanilla version</a>.
+        <a href="v1.html#evidence">vanilla version</a>.
       </p>
     </section>
   );

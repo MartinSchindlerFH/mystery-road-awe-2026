@@ -5,7 +5,7 @@ export default defineConfig({
   plugins: [react()],
   build: {
     rolldownOptions: {
-      input: ["index.html", "react.html"],
+      input: ["v1.html", "index.html"],
     },
   },
 });

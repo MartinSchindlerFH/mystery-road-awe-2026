@@ -112,7 +112,7 @@ function initApp(): void {
 }
 
 // ---------------------------------------------------------------------
-// GLOBALS REQUIRED BY THE INLINE HANDLERS IN index.html
+// GLOBALS REQUIRED BY THE INLINE HANDLERS IN v1.html
 // ---------------------------------------------------------------------
 
 window.navigateTo = navigateTo;

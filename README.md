@@ -17,7 +17,7 @@ during the course will be to analyse, maintain, refactor, migrate, and extend it
 ## Running the application
 
 This application uses `fetch()` to load its case data from local JSON files, so it must be served
-over HTTP — opening `index.html` directly from the filesystem (`file://`) will not work in most
+over HTTP — opening `v1.html` directly from the filesystem (`file://`) will not work in most
 browsers.
 
 Any static file server will do. For example, from the project root:
@@ -59,7 +59,7 @@ with it — that discovery process is part of the course.
 
 ## React source layout (`src/`)
 
-The React version (`react.html` + `src/`) is organised by feature, not by file type:
+The React version (`index.html` + `src/`) is organised by feature, not by file type:
 
     src/main.tsx, App.tsx    entry point and the component that loads data and picks the page
     src/shell/               header, nav button, footer, loading overlay: the frame around every page
