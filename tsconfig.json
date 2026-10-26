@@ -4,5 +4,6 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["js", "src"]
+  "include": [
+    "v1", "src"]
 }

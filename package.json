@@ -2,7 +2,7 @@
   "name": "mystery-road-awe-2026",
   "version": "1.0.0",
   "description": "Investigate the failure of an AI-assisted rehabilitation robot.",
-  "main": "js/main.js",
+  "main": "src/main.tsx",
   "private": true,
   "type": "module",
   "scripts": {
@@ -10,10 +10,10 @@
     "build": "tsc --noEmit && vite build --base=./",
     "preview": "vite preview",
     "type:check": "tsc --noEmit",
-    "lint:check": "eslint js src",
-    "lint:fix": "eslint js src --fix",
-    "format:check": "prettier --check js src",
-    "format:fix": "prettier --write js src",
+    "lint:check": "eslint v1 src",
+    "lint:fix": "eslint v1 src --fix",
+    "format:check": "prettier --check v1 src",
+    "format:fix": "prettier --write v1 src",
     "start": "serve ."
   },
   "repository": {
