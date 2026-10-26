@@ -4,7 +4,7 @@ import type {
   Evidence,
   Person,
   TimelineEvent,
-} from "./types.js";
+} from "../js/types";
 
 export let allEvidence: Evidence[] = [];
 export let filteredEvidence: Evidence[] = [];

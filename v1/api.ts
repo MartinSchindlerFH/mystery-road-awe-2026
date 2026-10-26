@@ -14,7 +14,7 @@ import type {
   Evidence,
   Person,
   TimelineEvent,
-} from "./types.js";
+} from "../js/types";
 import { populateAllDropdowns } from "./dropdowns.js";
 import { renderDashboard } from "./views/dashboard.js";
 import {

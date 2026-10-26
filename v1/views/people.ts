@@ -1,6 +1,6 @@
 import { allEvidence, allLocations, allPeople } from "../state.js";
 import { navigateTo } from "../navigation.js";
-import type { Person } from "../types.js";
+import type { Person } from "../../js/types.js";
 import { evidenceMentionsPerson, getElement } from "../../js/utils.js";
 import { renderEvidenceList } from "./evidence.js";
 

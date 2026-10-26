@@ -17,7 +17,7 @@ import {
   saveBookmarksToStorage,
   saveNoteForEvidence,
 } from "../storage.js";
-import type { Evidence } from "../types.js";
+import type { Evidence } from "../../js/types";
 import {
   evidenceMentionsPerson,
   formatDate,
