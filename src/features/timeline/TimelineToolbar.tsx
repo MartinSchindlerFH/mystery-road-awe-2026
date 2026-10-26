@@ -27,7 +27,7 @@ export function TimelineToolbar({
         <label htmlFor="timelinePersonFilter" className="visually-hidden">
           Filter by person
         </label>
-        <select id="timelinePersonFilter" defaultValue={selectedPerson}>
+        <select id="timelinePersonFilter" value={selectedPerson}>
           <option value="">All people</option>
           {people.map((person) => (
             <option key={person.id} value={person.id}>
