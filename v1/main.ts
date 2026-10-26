@@ -17,7 +17,7 @@ import {
 import { switchPeopleTab } from "./views/people.js";
 import { renderTimeline } from "./views/timeline.js";
 import { saveHypothesis } from "./views/workspace.js";
-import { getElement } from "./utils.js";
+import { getElement } from "../js/utils.js";
 
 declare global {
   interface Window {

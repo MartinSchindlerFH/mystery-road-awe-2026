@@ -12,8 +12,8 @@
     "type:check": "tsc --noEmit",
     "lint:check": "eslint v1 src",
     "lint:fix": "eslint v1 src --fix",
-    "format:check": "prettier --check v1 src",
-    "format:fix": "prettier --write v1 src",
+    "format:check": "prettier --check js v1 src",
+    "format:fix": "prettier --write js v1 src",
     "start": "serve ."
   },
   "repository": {

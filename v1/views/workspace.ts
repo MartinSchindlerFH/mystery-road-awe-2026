@@ -2,7 +2,7 @@ import { allEvidence, allPeople, bookmarks } from "../state.js";
 import { navigateTo } from "../navigation.js";
 import { STORAGE_KEY_HYPOTHESIS, notesStore } from "../storage.js";
 import type { HypothesisDraft } from "../types.js";
-import { getElement, getSelectedOptions } from "../utils.js";
+import { getElement, getSelectedOptions } from "../../js/utils.js";
 import { openEvidenceDetail } from "./evidence.js";
 
 export function renderWorkspace(): void {

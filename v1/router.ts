@@ -1,5 +1,5 @@
 import { setCurrentPage, viewRendered } from "./state.js";
-import { getElement } from "./utils.js";
+import { getElement } from "../js/utils.js";
 import { renderDashboard } from "./views/dashboard.js";
 import { renderEvidenceList } from "./views/evidence.js";
 import { renderLocations, renderPeople } from "./views/people.js";

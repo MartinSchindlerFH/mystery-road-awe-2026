@@ -6,7 +6,7 @@ import {
   findLocationById,
 } from "../state.js";
 import { navigateTo } from "../navigation.js";
-import { certaintyBadgeClass, formatDate, getElement } from "../utils.js";
+import { certaintyBadgeClass, formatDate, getElement } from "../../js/utils.js";
 import { openEvidenceDetail } from "./evidence.js";
 
 export function populateTimelineDropdowns(): void {
