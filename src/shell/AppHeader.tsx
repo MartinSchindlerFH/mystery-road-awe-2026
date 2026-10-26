@@ -1,4 +1,3 @@
-import { VIEWS } from "../routing/views.js";
 import { NavItem } from "./NavItem.jsx";
 
 export function AppHeader() {
@@ -27,3 +26,16 @@ export function AppHeader() {
     </header>
   );
 }
+
+type ViewInfo = {
+  path: string;
+  label: string;
+};
+
+const VIEWS: ViewInfo[] = [
+  { path: "/", label: "Dashboard" },
+  { path: "/evidence", label: "Evidence" },
+  { path: "/team", label: "People & Locations" },
+  { path: "/timeline", label: "Timeline" },
+  { path: "/workspace", label: "Workspace" },
+];
