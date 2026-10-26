@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router";
-import { evidenceMentionsPerson } from "../../../js/utils.js";
+import { evidenceMentionsPerson } from "../../../js/utils";
 import { Badge, statusTone } from "../../components/Badge.jsx";
 import { PageSection } from "../../components/PageSection.jsx";
 import type { CaseFile } from "../../data/caseData.js";

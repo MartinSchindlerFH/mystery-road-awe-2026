@@ -1,4 +1,4 @@
-import type { TimelineEvent } from "../../../js/types.js";
+import type { TimelineEvent } from "../../../js/types";
 import { formatDate } from "../../../js/utils.js";
 import { Badge, certaintyTone } from "../../components/Badge.jsx";
 

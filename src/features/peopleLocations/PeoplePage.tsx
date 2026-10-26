@@ -1,5 +1,5 @@
 import type { CaseFile } from "../../data/caseData.js";
-import { evidenceMentionsPerson } from "../../../js/utils.js";
+import { evidenceMentionsPerson } from "../../../js/utils";
 import { LocationList } from "./LocationList.jsx";
 import { PageSection } from "../../components/PageSection.jsx";
 import { PeopleList, type PersonEntry } from "./PeopleList.jsx";

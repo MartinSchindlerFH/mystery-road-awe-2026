@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import type { Person } from "../../../js/types.js";
+import type { Person } from "../../../js/types";
 import { PersonCard } from "./PersonCard.jsx";
 
 export type PersonEntry = {

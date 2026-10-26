@@ -4,7 +4,7 @@ import type {
   Evidence,
   Person,
   TimelineEvent,
-} from "../../js/types.js";
+} from "../../js/types";
 
 export type CaseFile = {
   caseData: CaseData;

@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import type { Person } from "../../../js/types.js";
+import type { Person } from "../../../js/types";
 
 type PersonCardProps = {
   person: Person;

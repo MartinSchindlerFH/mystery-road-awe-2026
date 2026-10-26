@@ -1,4 +1,4 @@
-import type { CaseData } from "../../../js/types.js";
+import type { CaseData } from "../../../js/types";
 import { Badge } from "../../components/Badge.jsx";
 
 type CaseSummaryCardProps = {

@@ -1,4 +1,4 @@
-import type { CaseLocation, Person } from "../../../js/types.js";
+import type { CaseLocation, Person } from "../../../js/types";
 
 type TimelineToolbarProps = {
   people: Person[];

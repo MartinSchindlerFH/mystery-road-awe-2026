@@ -1,4 +1,4 @@
-import type { CaseLocation, TimelineEvent } from "../../../js/types.js";
+import type { CaseLocation, TimelineEvent } from "../../../js/types";
 import { TimelineEventCard } from "./TimelineEventCard.jsx";
 
 type TimelineListProps = {

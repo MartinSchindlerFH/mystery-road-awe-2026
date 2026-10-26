@@ -1,4 +1,4 @@
-import type { Evidence } from "../../../js/types.js";
+import type { Evidence } from "../../../js/types";
 import { Badge, statusTone } from "../../components/Badge.jsx";
 import { Panel } from "./Panel.jsx";
 
