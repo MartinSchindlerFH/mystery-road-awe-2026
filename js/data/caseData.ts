@@ -49,6 +49,17 @@ export function readStoredBookmarks(): string[] {
   }
 }
 
+export function toggleBookmarkAndStore(evidenceId: string): void {
+  let bookmarks = readStoredBookmarks();
+  if (bookmarks.includes(evidenceId)) {
+    bookmarks.push(evidenceId);
+  } else {
+    // Remove bookmark
+    bookmarks = bookmarks.filter((id) => !bookmarks.includes(id));
+  }
+  localStorage.setItem(STORAGE_KEY_BOOKMARKS, JSON.stringify(bookmarks));
+}
+
 export function loadNoteForEvidence(evidenceId: string): string {
   try {
     const raw = localStorage.getItem(STORAGE_KEY_NOTES);

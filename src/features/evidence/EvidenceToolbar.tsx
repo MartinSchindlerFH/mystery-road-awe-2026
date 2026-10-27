@@ -1,4 +1,5 @@
 import { CaseLocation, Person } from "../../../js/types";
+import { renderEvidenceList } from "../../../v1/views/evidence";
 
 type EvidenceToolbarProps = {
   types: string[];
@@ -22,6 +23,9 @@ export function EvidenceToolbar({
           id="evidenceSearch"
           placeholder="Search evidence by title, summary, or tag&hellip;"
           autoComplete="off"
+          onInput={(event) => {
+            alert(`Search requested`);
+          }}
         />
 
         <label htmlFor="filterType" className="visually-hidden">
