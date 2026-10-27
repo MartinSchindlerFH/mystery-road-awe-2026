@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import {
   loadCaseFile,
-  readStoredBookmarks,
+  loadBookmarks,
   type CaseFile,
 } from "./caseData.js";
 
@@ -18,7 +18,7 @@ export function useCaseFile(): CaseFileState {
     loadCaseFile()
       .then((file) => {
         if (cancelled) return;
-        setState({ status: "ready", file, bookmarks: readStoredBookmarks() });
+        setState({ status: "ready", file, bookmarks: loadBookmarks() });
       })
       .catch((err: unknown) => {
         if (cancelled) return;

@@ -31,7 +31,7 @@ export async function loadCaseFile(): Promise<CaseFile> {
   return { caseData, people, locations, evidence, timeline };
 }
 
-export function readStoredBookmarks(): string[] {
+export function loadBookmarks(): string[] {
   try {
     const raw = localStorage.getItem(STORAGE_KEY_BOOKMARKS);
     const parsed: unknown = raw ? JSON.parse(raw) : [];
@@ -44,7 +44,7 @@ export function readStoredBookmarks(): string[] {
 }
 
 export function toggleBookmarkAndStore(evidenceId: string): void {
-  let bookmarks = readStoredBookmarks();
+  let bookmarks = loadBookmarks();
   if (bookmarks.includes(evidenceId)) {
     bookmarks.push(evidenceId);
   } else {

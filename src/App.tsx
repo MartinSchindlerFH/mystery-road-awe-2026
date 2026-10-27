@@ -10,7 +10,7 @@ import { AppFooter } from "./shell/AppFooter.jsx";
 import { AppHeader } from "./shell/AppHeader.jsx";
 import { LoadingOverlay } from "./shell/LoadingOverlay.jsx";
 import { NotFoundPage } from "./shell/NotFoundPage.jsx";
-import { readStoredBookmarks } from "../js/data/caseData";
+import { loadBookmarks } from "../js/data/caseData";
 
 type PagesProps = {
   caseFile: CaseFileState;
@@ -31,7 +31,7 @@ function Pages({ caseFile }: PagesProps) {
       />
       <Route
         path="/evidence"
-        element={<EvidencePage file={file} bookmarks={readStoredBookmarks()} />}
+        element={<EvidencePage file={file} bookmarks={loadBookmarks()} />}
       />
       <Route path="/team" element={<Navigate to="/team/people" replace />} />
       <Route

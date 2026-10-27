@@ -5,7 +5,7 @@ import { EvidenceNote, PersonalNotesSection } from "./PersonalNotesSection";
 import {
   CaseFile,
   loadNoteForEvidence,
-  readStoredBookmarks,
+  loadBookmarks,
 } from "../../../js/data/caseData";
 
 type WorkspacePageProps = {
@@ -18,7 +18,7 @@ export function WorkspacePage({ file }: WorkspacePageProps) {
       <div className="workspace-grid">
         <BookmarkedEvidenceSection
           bookmarkedEvidence={file.evidence.filter(
-            (ev) => readStoredBookmarks().indexOf(ev.id) !== -1,
+            (ev) => loadBookmarks().indexOf(ev.id) !== -1,
           )}
         />
 
