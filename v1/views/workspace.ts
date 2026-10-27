@@ -16,7 +16,7 @@ function renderBookmarksList(): void {
   const container = document.getElementById("bookmarksList");
   if (!container) return;
 
-  const bookmarkedItems = allEvidence.filter(function (ev) {
+  const bookmarkedItems = allEvidence.filter((ev) => {
     return bookmarks.indexOf(ev.id) !== -1;
   });
 

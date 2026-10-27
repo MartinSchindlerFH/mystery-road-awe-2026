@@ -4,7 +4,7 @@ import type {
   Evidence,
   Person,
   TimelineEvent,
-} from "../../js/types";
+} from "../types";
 
 export type CaseFile = {
   caseData: CaseData;
@@ -52,8 +52,10 @@ export function readStoredBookmarks(): string[] {
 export function loadNoteForEvidence(evidenceId: string): string {
   try {
     const raw = localStorage.getItem(STORAGE_KEY_NOTES);
-    const parsed: Record<string, string> = raw ? JSON.parse(raw) : [];
-    return parsed[evidenceId];
+    const parsed: Map<string, string> = raw
+      ? JSON.parse(raw)
+      : new Map<string, string>();
+    return parsed.get(evidenceId) ?? "";
   } catch {
     return "";
   }

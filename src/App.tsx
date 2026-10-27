@@ -49,7 +49,7 @@ function Pages({ caseFile }: PagesProps) {
         element={<PeoplePage file={file} tab="locations" />}
       />
       <Route path="/timeline" element={<TimelinePage file={file} />} />
-      <Route path="/workspace" element={<WorkspacePage />} />
+      <Route path="/workspace" element={<WorkspacePage file={file} />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
