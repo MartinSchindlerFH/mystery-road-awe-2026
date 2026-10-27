@@ -36,7 +36,9 @@ export function EvidenceToolbar({
         <select id="filterType">
           <option value="">All types</option>
           {types.map((type) => (
-            <option value={type}>{type}</option>
+            <option value={type} key={type}>
+              {type}
+            </option>
           ))}
         </select>
 
@@ -46,7 +48,7 @@ export function EvidenceToolbar({
         <select id="filterPerson">
           <option value="">All people</option>
           {people.map((person) => (
-            <option key={person.id} value={person.id}>
+            <option value={person.id} key={person.id}>
               {person.name}
             </option>
           ))}
@@ -58,7 +60,7 @@ export function EvidenceToolbar({
         <select id="filterLocation">
           <option value="">All locations</option>
           {locations.map((location) => (
-            <option key={location.id} value={location.id}>
+            <option value={location.id} key={location.id}>
               {location.id}
             </option>
           ))}
@@ -88,7 +90,7 @@ export function EvidenceToolbar({
         <label htmlFor="sortEvidence" className="visually-hidden">
           Sort evidence
         </label>
-        <select id="sortEvidence" /*onChange="handleSortChange()"*/>
+        <select id="sortEvidence">
           <option value="date-desc">Newest first</option>
           <option value="date-asc">Oldest first</option>
           <option value="title-asc">Title (A&ndash;Z)</option>
