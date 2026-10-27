@@ -48,3 +48,13 @@ export function readStoredBookmarks(): string[] {
     return [];
   }
 }
+
+export function loadNoteForEvidence(evidenceId: string): string {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY_NOTES);
+    const parsed: Record<string, string> = raw ? JSON.parse(raw) : [];
+    return parsed[evidenceId];
+  } catch {
+    return "";
+  }
+}

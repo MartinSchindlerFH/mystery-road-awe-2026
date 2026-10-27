@@ -1,7 +1,7 @@
 import { allEvidence, allLocations, allPeople } from "../state.js";
 import { navigateTo } from "../navigation.js";
 import type { Person } from "../../js/types.js";
-import { evidenceMentionsPerson, getElement } from "../../js/utils.js";
+import { evidenceMentionsPerson, getElement } from "../utils.js";
 import { renderEvidenceList } from "./evidence.js";
 
 export function switchPeopleTab(tab: string): void {

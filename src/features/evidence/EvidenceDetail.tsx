@@ -1,6 +1,6 @@
 import { CaseLocation, Evidence, Person } from "../../../js/types";
 import { formatDate, getObjectById } from "../../../js/utils";
-import { loadNoteForEvidence } from "../../data/caseData";
+import { loadNoteForEvidence } from "../../../js/data/caseData";
 
 type EvidenceDetail = {
   evidence: Evidence;

@@ -1,6 +1,6 @@
 import { useSearchParams } from "react-router";
 import { PageSection } from "../../components/PageSection.jsx";
-import type { CaseFile } from "../../data/caseData.js";
+import type { CaseFile } from "../../../js/data/caseData.js";
 import { TimelineList } from "./TimelineList.jsx";
 import { TimelineToolbar } from "./TimelineToolbar.jsx";
 

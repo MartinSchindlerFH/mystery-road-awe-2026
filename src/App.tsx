@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from "react-router";
-import { useCaseFile, type CaseFileState } from "./data/useCaseFile.js";
+import { useCaseFile, type CaseFileState } from "../js/data/useCaseFile.js";
 import { DashboardPage } from "./features/dashboard/DashboardPage.jsx";
 import { EvidencePage } from "./features/evidence/EvidencePage.jsx";
 import { PeoplePage } from "./features/peopleLocations/PeoplePage.jsx";
@@ -10,7 +10,7 @@ import { AppFooter } from "./shell/AppFooter.jsx";
 import { AppHeader } from "./shell/AppHeader.jsx";
 import { LoadingOverlay } from "./shell/LoadingOverlay.jsx";
 import { NotFoundPage } from "./shell/NotFoundPage.jsx";
-import { readStoredBookmarks } from "./data/caseData";
+import { readStoredBookmarks } from "../js/data/caseData";
 
 type PagesProps = {
   caseFile: CaseFileState;

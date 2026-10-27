@@ -24,7 +24,7 @@ import {
   getElement,
   getRelevanceBadgeClass,
   getStatusBadgeClass,
-} from "../../js/utils.js";
+} from "../utils.js";
 
 let evidenceViewLoading = true;
 

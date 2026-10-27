@@ -6,7 +6,7 @@ import {
   bookmarks,
   caseData,
 } from "../state.js";
-import { formatDate, getStatusBadgeClass } from "../../js/utils.js";
+import { formatDate, getStatusBadgeClass } from "../utils.js";
 
 export function renderDashboard(): void {
   const container = document.getElementById("dashboardContent");
