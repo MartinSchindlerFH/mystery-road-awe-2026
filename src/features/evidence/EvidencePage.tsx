@@ -1,10 +1,6 @@
 import { EvidenceToolbar } from "./EvidenceToolbar";
 import { PageSection } from "../../components/PageSection";
-import {
-  CaseFile,
-  loadBookmarks,
-  saveBookmarks,
-} from "../../../js/data/caseData";
+import { CaseFile, saveBookmarks } from "../../../js/data/caseData";
 import { EvidenceCard } from "./EvidenceCard";
 import type { Evidence } from "../../../js/types";
 import { evidenceMentionsPerson } from "../../../js/utils";
@@ -12,11 +8,15 @@ import { Dispatch, SetStateAction, useState } from "react";
 
 type EvidencePageProps = {
   file: CaseFile;
+  bookmarks: string[];
+  setBookmarks: Dispatch<SetStateAction<string[]>>;
 };
 
-export function EvidencePage({ file }: EvidencePageProps) {
-  const [bookmarks, setBookmarks] = useState(loadBookmarks());
-
+export function EvidencePage({
+  file,
+  bookmarks,
+  setBookmarks,
+}: EvidencePageProps) {
   const [searchTerm, setSearchTerm] = useState("");
   const [filterType, setFilterType] = useState("");
   const [filterPerson, setFilterPerson] = useState("");

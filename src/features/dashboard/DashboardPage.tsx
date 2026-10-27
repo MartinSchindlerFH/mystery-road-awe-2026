@@ -1,4 +1,4 @@
-import { CaseFile, loadBookmarks } from "../../../js/data/caseData.js";
+import { CaseFile } from "../../../js/data/caseData.js";
 import { CaseSummaryCard } from "./CaseSummaryCard.jsx";
 import { IntroCard } from "./IntroCard.jsx";
 import { PageSection } from "../../components/PageSection.jsx";
@@ -9,15 +9,15 @@ import { StatCard } from "./StatCard.jsx";
 
 type DashboardPageProps = {
   file: CaseFile;
+  bookmarks: string[];
 };
 
-export function DashboardPage({ file }: DashboardPageProps) {
+export function DashboardPage({ file, bookmarks }: DashboardPageProps) {
   const reviewedCount = file.evidence.filter(
     (ev) => ev.status.toLowerCase() === "reviewed",
   ).length;
   const recentEvidence = file.evidence.slice(-5).reverse();
   const recentTimeline = file.timeline.slice(-5).reverse();
-  const bookmarks = loadBookmarks();
 
   return (
     <PageSection title="Case Dashboard">

@@ -10,6 +10,7 @@ import { AppFooter } from "./shell/AppFooter.jsx";
 import { AppHeader } from "./shell/AppHeader.jsx";
 import { LoadingOverlay } from "./shell/LoadingOverlay.jsx";
 import { NotFoundPage } from "./shell/NotFoundPage.jsx";
+import { useState } from "react";
 
 type PagesProps = {
   caseFile: CaseFileState;
@@ -20,12 +21,26 @@ function Pages({ caseFile }: PagesProps) {
   if (caseFile.status === "error") {
     return <div className="warning-banner">{caseFile.message}</div>;
   }
-  const { file } = caseFile;
+  const file = caseFile.file;
+
+  const [bookmarks, setBookmarks] = useState(caseFile.bookmarks);
 
   return (
     <Routes>
-      <Route path="/" element={<DashboardPage file={file} />} />
-      <Route path="/evidence" element={<EvidencePage file={file} />} />
+      <Route
+        path="/"
+        element={<DashboardPage file={file} bookmarks={bookmarks} />}
+      />
+      <Route
+        path="/evidence"
+        element={
+          <EvidencePage
+            file={file}
+            bookmarks={bookmarks}
+            setBookmarks={setBookmarks}
+          />
+        }
+      />
       <Route path="/team" element={<Navigate to="/team/people" replace />} />
       <Route
         path="/team/people"
@@ -42,7 +57,10 @@ function Pages({ caseFile }: PagesProps) {
         element={<PeoplePage file={file} tab="locations" />}
       />
       <Route path="/timeline" element={<TimelinePage file={file} />} />
-      <Route path="/workspace" element={<WorkspacePage file={file} />} />
+      <Route
+        path="/workspace"
+        element={<WorkspacePage file={file} bookmarks={bookmarks} />}
+      />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
