@@ -1,7 +1,7 @@
 import { PageSection } from "../../components/PageSection";
 import { HypothesisCard } from "./HypothesisCard";
 import { BookmarkedEvidenceSection } from "./BookmarkedEvidenceSection";
-import { PersonalNotesSection } from "./PersonalNotesSection";
+import { EvidenceNote, PersonalNotesSection } from "./PersonalNotesSection";
 import {
   CaseFile,
   loadNoteForEvidence,
@@ -23,9 +23,17 @@ export function WorkspacePage({ file }: WorkspacePageProps) {
         />
 
         <PersonalNotesSection
-          evidenceWithNotes={file.evidence.filter(
-            (ev) => loadNoteForEvidence(ev.id) !== "",
-          )}
+          evidenceNotes={file.evidence
+            .map((ev) => ({
+              ev: ev,
+              note: loadNoteForEvidence(ev.id),
+            }))
+            .filter(({ note }) => note !== "")
+            .map(({ ev, note }) => ({
+              id: ev.id,
+              title: ev.title,
+              note: note,
+            }))}
         />
       </div>
 

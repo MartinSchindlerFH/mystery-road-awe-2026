@@ -6,12 +6,14 @@ type EvidenceDetail = {
   evidence: Evidence;
   people: Person[];
   locations: CaseLocation[];
+  note: string;
 };
 
 export function EvidenceDetail({
   evidence,
   people,
   locations,
+  note,
 }: EvidenceDetail) {
   return (
     <div>
@@ -87,7 +89,7 @@ export function EvidenceDetail({
           data-evidence-id={evidence.id}
           placeholder="Add a private note about this evidence..."
         >
-          {loadNoteForEvidence(evidence.id)}
+          {note}
         </textarea>
         <button
           type="button"
@@ -99,7 +101,7 @@ export function EvidenceDetail({
       </div>
       <div className="detail-field">
         <strong>Note preview</strong>
-        <div id="notePreview">{loadNoteForEvidence(evidence.id)}</div>
+        <div id="notePreview">{note}</div>
       </div>
     </div>
   );

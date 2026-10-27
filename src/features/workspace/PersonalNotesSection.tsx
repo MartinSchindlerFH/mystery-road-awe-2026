@@ -1,14 +1,14 @@
-import { Evidence } from "../../../js/types";
-import { getObjectById } from "../../../js/utils";
-import { loadNoteForEvidence } from "../../../v1/storage";
-
-type PersonalNotesProps = {
-  evidenceWithNotes: Evidence[];
+export type EvidenceNote = {
+  id: string;
+  title: string;
+  note: string;
 };
 
-export function PersonalNotesSection({
-  evidenceWithNotes,
-}: PersonalNotesProps) {
+type PersonalNotesProps = {
+  evidenceNotes: EvidenceNote[];
+};
+
+export function PersonalNotesSection({ evidenceNotes }: PersonalNotesProps) {
   return (
     <div className="workspace-col">
       <h3>Personal Notes</h3>
@@ -17,18 +17,15 @@ export function PersonalNotesSection({
         Evidence view.
       </p>
       <div id="notesList" className="notes-list">
-        {evidenceWithNotes.length === 0 ? (
+        {evidenceNotes.length === 0 ? (
           <p>No notes yet. Add one from an evidence item's detail view.</p>
         ) : (
-          evidenceWithNotes.map((evidence) => {
-            const note = loadNoteForEvidence(evidence.id);
-            return (
-              <div className="mini-list-item" key={evidence.id}>
-                <strong>{evidence.id}</strong> &mdash; {evidence.title}
-                <div id={`noteText-${evidence.id}`}>{note}</div>
-              </div>
-            );
-          })
+          evidenceNotes.map((evidenceNote) => (
+            <div className="mini-list-item" key={evidenceNote.id}>
+              <strong>{evidenceNote.id}</strong> &mdash; {evidenceNote.title}
+              <div id={`noteText-${evidenceNote.id}`}>{evidenceNote.note}</div>
+            </div>
+          ))
         )}
       </div>
     </div>
