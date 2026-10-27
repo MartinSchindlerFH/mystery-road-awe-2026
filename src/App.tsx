@@ -10,7 +10,6 @@ import { AppFooter } from "./shell/AppFooter.jsx";
 import { AppHeader } from "./shell/AppHeader.jsx";
 import { LoadingOverlay } from "./shell/LoadingOverlay.jsx";
 import { NotFoundPage } from "./shell/NotFoundPage.jsx";
-import { loadBookmarks } from "../js/data/caseData";
 
 type PagesProps = {
   caseFile: CaseFileState;
@@ -21,14 +20,11 @@ function Pages({ caseFile }: PagesProps) {
   if (caseFile.status === "error") {
     return <div className="warning-banner">{caseFile.message}</div>;
   }
-  const { file, bookmarks } = caseFile;
+  const { file } = caseFile;
 
   return (
     <Routes>
-      <Route
-        path="/"
-        element={<DashboardPage file={file} bookmarks={bookmarks} />}
-      />
+      <Route path="/" element={<DashboardPage file={file} />} />
       <Route path="/evidence" element={<EvidencePage file={file} />} />
       <Route path="/team" element={<Navigate to="/team/people" replace />} />
       <Route

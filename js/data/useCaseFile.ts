@@ -1,9 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  loadCaseFile,
-  loadBookmarks,
-  type CaseFile,
-} from "./caseData.js";
+import { loadCaseFile, loadBookmarks, type CaseFile } from "./caseData.js";
 
 export type CaseFileState =
   | { status: "loading" }

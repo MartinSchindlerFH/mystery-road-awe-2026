@@ -1,4 +1,4 @@
-import { Evidence, Person, PersonId } from "../../../js/types";
+import { Evidence, Person } from "../../../js/types";
 import { useState } from "react";
 import { loadHypothesis, saveHypothesis } from "../../../js/data/caseData";
 

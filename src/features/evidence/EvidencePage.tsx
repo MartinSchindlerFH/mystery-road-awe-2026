@@ -17,6 +17,15 @@ type EvidencePageProps = {
 export function EvidencePage({ file }: EvidencePageProps) {
   const [bookmarks, setBookmarks] = useState(loadBookmarks());
 
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filterType, setFilterType] = useState("");
+  const [filterPerson, setFilterPerson] = useState("");
+  const [filterLocation, setFilterLocation] = useState("");
+
+  const [filterStatus, setFilterStatus] = useState("");
+  const [filterRelevance, setFilterRelevance] = useState("");
+  const [sortEvidence, setSortEvidence] = useState("");
+
   return (
     <PageSection title="Evidence Catalogue">
       <EvidenceToolbar
@@ -24,6 +33,22 @@ export function EvidencePage({ file }: EvidencePageProps) {
         types={[...new Set(file.evidence.map((evidence) => evidence.type))]}
         people={file.people}
         locations={file.locations}
+
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        filterType={filterType}
+        setFilterType={setFilterType}
+        filterPerson={filterPerson}
+        setFilterPerson={setFilterPerson}
+        filterLocation={filterLocation}
+        setFilterLocation={setFilterLocation}
+
+        filterStatus={filterStatus}
+        setFilterStatus={setFilterStatus}
+        filterRelevance={filterRelevance}
+        setFilterRelevance={setFilterRelevance}
+        sortEvidence={sortEvidence}
+        setSortEvidence={setSortEvidence}
       />
 
       <div id="evidenceListContainer">
@@ -36,14 +61,15 @@ export function EvidencePage({ file }: EvidencePageProps) {
             <p>No evidence matches the current filters.</p>
           ) : (
             // TODO filtering currently uses default values
-            getFilteredEvidence(
+            filterEvidence(
               file.evidence,
-              "",
-              "",
-              "",
-              "",
-              "",
-              "",
+              searchTerm,
+              filterType,
+              filterPerson,
+              filterLocation,
+              filterStatus,
+              filterRelevance,
+              sortEvidence,
               file,
             ).map((evidence) => (
               <EvidenceCard
@@ -65,7 +91,7 @@ export function EvidencePage({ file }: EvidencePageProps) {
   );
 }
 
-function getFilteredEvidence(
+function filterEvidence(
   allEvidence: Evidence[],
   searchTerm: string,
   typeVal: string,
@@ -73,6 +99,7 @@ function getFilteredEvidence(
   locationVal: string,
   statusVal: string,
   relevanceVal: string,
+  sortVal: string,
   caseFile: CaseFile,
 ): Evidence[] {
   const results = [];
@@ -112,8 +139,7 @@ function getFilteredEvidence(
     if (matches) results.push(item);
   }
 
-  // TODO sort selector is currently non-functional
-  return sortEvidence(results, "date-desc");
+  return sortEvidence(results, sortVal);
 }
 
 function sortEvidence(list: Evidence[], sortValue: string): Evidence[] {

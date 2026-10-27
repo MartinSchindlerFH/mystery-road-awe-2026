@@ -1,7 +1,7 @@
 import { PageSection } from "../../components/PageSection";
 import { HypothesisCard } from "./HypothesisCard";
 import { BookmarkedEvidenceSection } from "./BookmarkedEvidenceSection";
-import { EvidenceNote, PersonalNotesSection } from "./PersonalNotesSection";
+import { PersonalNotesSection } from "./PersonalNotesSection";
 import {
   CaseFile,
   loadNoteForEvidence,

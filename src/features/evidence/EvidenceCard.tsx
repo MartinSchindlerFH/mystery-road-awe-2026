@@ -8,7 +8,7 @@ import {
 type EvidenceCardProp = {
   evidence: Evidence;
   isBookmarked: boolean;
-  handleToggleBookmark: any;
+  handleToggleBookmark: () => void;
 };
 
 export function EvidenceCard({
