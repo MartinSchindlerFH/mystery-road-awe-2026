@@ -2,7 +2,9 @@ import type {
   CaseData,
   CaseLocation,
   Evidence,
+  Hypothesis,
   Person,
+  PersonId,
   TimelineEvent,
 } from "../types";
 
@@ -16,15 +18,7 @@ export type CaseFile = {
 
 const STORAGE_KEY_BOOKMARKS = "remotion_bookmarks";
 const STORAGE_KEY_NOTES = "remotion_notes";
-export const STORAGE_KEY_HYPOTHESIS = "remotion_hypothesis";
-
-async function fetchJson<T>(path: string): Promise<T> {
-  const res = await fetch(path);
-  if (!res.ok) {
-    throw new Error("Could not load " + path + " (" + res.status + ")");
-  }
-  return res.json() as Promise<T>;
-}
+const STORAGE_KEY_HYPOTHESIS = "remotion_hypothesis";
 
 export async function loadCaseFile(): Promise<CaseFile> {
   const [caseData, people, locations, evidence, timeline] = await Promise.all([
@@ -70,4 +64,22 @@ export function loadNoteForEvidence(evidenceId: string): string {
   } catch {
     return "";
   }
+}
+
+export function saveHypothesis(hypothesis: Hypothesis): void {
+  localStorage.setItem(STORAGE_KEY_HYPOTHESIS, JSON.stringify(hypothesis));
+}
+
+export function loadHypothesis(): Hypothesis {
+  return JSON.parse(
+    <string>localStorage.getItem(STORAGE_KEY_HYPOTHESIS),
+  ) as Hypothesis;
+}
+
+async function fetchJson<T>(path: string): Promise<T> {
+  const res = await fetch(path);
+  if (!res.ok) {
+    throw new Error("Could not load " + path + " (" + res.status + ")");
+  }
+  return res.json() as Promise<T>;
 }

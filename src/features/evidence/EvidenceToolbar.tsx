@@ -1,5 +1,6 @@
 import { CaseLocation, Person } from "../../../js/types";
 import { renderEvidenceList } from "../../../v1/views/evidence";
+import { useState } from "react";
 
 type EvidenceToolbarProps = {
   types: string[];
@@ -12,6 +13,8 @@ export function EvidenceToolbar({
   people,
   locations,
 }: EvidenceToolbarProps) {
+  const [searchTerm, setSearchTerm] = useState("");
+
   return (
     <div className="toolbar" id="evidenceToolbar">
       <div className="toolbar-row">
@@ -23,9 +26,8 @@ export function EvidenceToolbar({
           id="evidenceSearch"
           placeholder="Search evidence by title, summary, or tag&hellip;"
           autoComplete="off"
-          onInput={(event) => {
-            alert(`Search requested`);
-          }}
+          value={searchTerm}
+          onChange={(event) => setSearchTerm(event.target.value)}
         />
 
         <label htmlFor="filterType" className="visually-hidden">

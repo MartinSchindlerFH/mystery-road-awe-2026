@@ -6,6 +6,15 @@ export type PersonId =
   | "refactor-rex"
   | "root-harbor";
 
+export type Hypothesis = {
+  suspect: string;
+  nature: string;
+  evidence: string[];
+  confidence: number;
+  explanation: string;
+  alternative: string;
+};
+
 export type CaseData = {
   caseId: string;
   title: string;
