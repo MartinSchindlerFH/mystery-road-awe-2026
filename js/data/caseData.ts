@@ -43,14 +43,7 @@ export function loadBookmarks(): string[] {
   }
 }
 
-export function toggleBookmarkAndStore(evidenceId: string): void {
-  let bookmarks = loadBookmarks();
-  if (bookmarks.includes(evidenceId)) {
-    bookmarks.push(evidenceId);
-  } else {
-    // Remove bookmark
-    bookmarks = bookmarks.filter((id) => !bookmarks.includes(id));
-  }
+export function saveBookmarks(bookmarks: string[]) {
   localStorage.setItem(STORAGE_KEY_BOOKMARKS, JSON.stringify(bookmarks));
 }
 

@@ -1,16 +1,22 @@
 import { EvidenceToolbar } from "./EvidenceToolbar";
 import { PageSection } from "../../components/PageSection";
-import { CaseFile } from "../../../js/data/caseData";
+import {
+  CaseFile,
+  loadBookmarks,
+  saveBookmarks,
+} from "../../../js/data/caseData";
 import { EvidenceCard } from "./EvidenceCard";
 import type { Evidence } from "../../../js/types";
 import { evidenceMentionsPerson } from "../../../js/utils";
+import { Dispatch, SetStateAction, useState } from "react";
 
 type EvidencePageProps = {
   file: CaseFile;
-  bookmarks: string[];
 };
 
-export function EvidencePage({ file, bookmarks }: EvidencePageProps) {
+export function EvidencePage({ file }: EvidencePageProps) {
+  const [bookmarks, setBookmarks] = useState(loadBookmarks());
+
   return (
     <PageSection title="Evidence Catalogue">
       <EvidenceToolbar
@@ -43,6 +49,9 @@ export function EvidencePage({ file, bookmarks }: EvidencePageProps) {
               <EvidenceCard
                 evidence={evidence}
                 isBookmarked={bookmarks.indexOf(evidence.id) !== -1}
+                handleToggleBookmark={() =>
+                  handleToggleBookmark(evidence.id, bookmarks, setBookmarks)
+                }
               />
             ))
           )}
@@ -124,4 +133,21 @@ function sortEvidence(list: Evidence[], sortValue: string): Evidence[] {
     );
   }
   return list;
+}
+
+function handleToggleBookmark(
+  evidenceId: string,
+  previousBookmarks: string[],
+  setBookmarks: Dispatch<SetStateAction<string[]>>,
+) {
+  // Copy array to ensure the state is provided a new object
+  let bookmarks = [...previousBookmarks];
+  if (bookmarks.includes(evidenceId)) {
+    // Remove bookmark
+    bookmarks = bookmarks.filter((id) => !bookmarks.includes(id));
+  } else {
+    bookmarks.push(evidenceId);
+  }
+  setBookmarks(bookmarks);
+  saveBookmarks(bookmarks);
 }

@@ -4,14 +4,18 @@ import {
   getRelevanceBadgeClass,
   getStatusBadgeClass,
 } from "../../../js/utils";
-import { toggleBookmarkAndStore } from "../../../js/data/caseData";
 
 type EvidenceCardProp = {
   evidence: Evidence;
   isBookmarked: boolean;
+  handleToggleBookmark: any;
 };
 
-export function EvidenceCard({ evidence, isBookmarked }: EvidenceCardProp) {
+export function EvidenceCard({
+  evidence,
+  isBookmarked,
+  handleToggleBookmark,
+}: EvidenceCardProp) {
   return (
     <div
       className="evidence-card"
@@ -30,9 +34,7 @@ export function EvidenceCard({ evidence, isBookmarked }: EvidenceCardProp) {
         onClick={(event) => {
           // Prevent the higher-level handler opening the Detail view from firing
           event.stopPropagation();
-          // TODO alert required because missing state management (comes in task 2) causes no re-render to be requested
-          alert(`Toggle bookmark for ${evidence.id}`);
-          toggleBookmarkAndStore(evidence.id);
+          handleToggleBookmark();
         }}
       >
         <span className={"bookmark-icon"}>{isBookmarked ? "★" : "☆"}</span>

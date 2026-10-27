@@ -29,10 +29,7 @@ function Pages({ caseFile }: PagesProps) {
         path="/"
         element={<DashboardPage file={file} bookmarks={bookmarks} />}
       />
-      <Route
-        path="/evidence"
-        element={<EvidencePage file={file} bookmarks={loadBookmarks()} />}
-      />
+      <Route path="/evidence" element={<EvidencePage file={file} />} />
       <Route path="/team" element={<Navigate to="/team/people" replace />} />
       <Route
         path="/team/people"
