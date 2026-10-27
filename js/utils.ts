@@ -57,3 +57,11 @@ export function getSelectedOptions(selectEl: HTMLSelectElement): string[] {
   }
   return result;
 }
+
+interface IdObject {
+  id: string;
+}
+
+export function getObjectById<T extends IdObject>(list: T[], id: string): T {
+  return list.filter((o) => o.id === id)[0];
+}

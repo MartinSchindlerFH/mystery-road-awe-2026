@@ -1,0 +1,106 @@
+import { CaseLocation, Evidence, Person } from "../../../js/types";
+import { formatDate, getObjectById } from "../../../js/utils";
+import { loadNoteForEvidence } from "../../data/caseData";
+
+type EvidenceDetail = {
+  evidence: Evidence;
+  people: Person[];
+  locations: CaseLocation[];
+};
+
+export function EvidenceDetail({
+  evidence,
+  people,
+  locations,
+}: EvidenceDetail) {
+  return (
+    <div>
+      <div className="evidence-detail-header">
+        <div>
+          <h2>{evidence.id}</h2>
+          <div className="evidence-meta">
+            {evidence.id} · {evidence.type} · {formatDate(evidence.timestamp)}
+          </div>
+        </div>
+        <button
+          type="button"
+          className="btn btn-secondary btn-small" /*onclick="closeEvidenceDetail()"*/
+        >
+          Close
+        </button>
+      </div>
+      {evidence.tags.indexOf("critical") !== -1 ? (
+        <div className="warning-banner">
+          This item is tagged as critical evidence.
+        </div>
+      ) : (
+        ""
+      )}
+      <div className="detail-field">
+        <strong>Summary</strong>
+        {evidence.summary}
+      </div>
+      <div className="evidence-detail-content">{evidence.content}</div>
+      <div className="detail-field">
+        <strong>Related people</strong>
+        {evidence.personIds
+          .map((personId) => getObjectById(people, personId)?.name ?? personId)
+          .join(", ")}
+      </div>
+      <div className="detail-field">
+        <strong>Related locations</strong>
+        {evidence.locationIds
+          .map((locationId) => {
+            const location = getObjectById(locations, locationId);
+            return location ? `${location.id} - ${location.name}` : locationId;
+          })
+          .join(", ")}
+      </div>
+      <div className="detail-field">
+        <strong>Tags</strong>
+        {evidence.tags.map((tag) => (
+          <span className="tag-chip">{tag}</span>
+        ))}
+      </div>
+      <div className="detail-field">
+        <strong>Review status</strong>
+        <select id="detailStatusSelect" value={evidence.status}>
+          <option value="unreviewed">Unreviewed</option>
+          <option value="reviewed">Reviewed</option>
+          <option value="flagged">Flagged</option>
+        </select>
+      </div>
+      <div className="detail-field">
+        <strong>Relevance</strong>
+        <select id="detailRelevanceSelect" value={evidence.relevance}>
+          <option value="unknown">Unknown</option>
+          <option value="relevant">Relevant</option>
+          <option value="irrelevant">Irrelevant</option>
+        </select>
+      </div>
+      <div className="detail-field">
+        <strong>Investigator note</strong>
+        <textarea
+          id="evidenceNoteInput"
+          className="note-textarea"
+          rows={3}
+          data-evidence-id={evidence.id}
+          placeholder="Add a private note about this evidence..."
+        >
+          {loadNoteForEvidence(evidence.id)}
+        </textarea>
+        <button
+          type="button"
+          className="btn btn-primary btn-small"
+          style={{ marginTop: "6px" }} /*onclick="saveCurrentNote()*/
+        >
+          Save note
+        </button>
+      </div>
+      <div className="detail-field">
+        <strong>Note preview</strong>
+        <div id="notePreview">{loadNoteForEvidence(evidence.id)}</div>
+      </div>
+    </div>
+  );
+}

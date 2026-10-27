@@ -15,6 +15,8 @@ export type CaseFile = {
 };
 
 const STORAGE_KEY_BOOKMARKS = "remotion_bookmarks";
+const STORAGE_KEY_NOTES = "remotion_notes";
+export const STORAGE_KEY_HYPOTHESIS = "remotion_hypothesis";
 
 async function fetchJson<T>(path: string): Promise<T> {
   const res = await fetch(path);
