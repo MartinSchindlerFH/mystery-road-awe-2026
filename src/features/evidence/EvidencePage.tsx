@@ -4,7 +4,7 @@ import { CaseFile } from "../../../js/data/caseData";
 import { EvidenceCard } from "./EvidenceCard";
 import type { Evidence } from "../../../js/types";
 import { evidenceMentionsPerson } from "../../../js/utils";
-import { useState } from "react";
+import { useReducer, useState } from "react";
 import { EvidenceDetail } from "./EvidenceDetail";
 import { useSearchParams } from "react-router";
 
@@ -30,14 +30,7 @@ export function EvidencePage({
       : file.evidence.filter((ev) => ev.id === paramEvidenceId).at(0),
   );
 
-  const [searchTerm, setSearchTerm] = useState("");
-  const [filterType, setFilterType] = useState("");
-  const [filterPerson, setFilterPerson] = useState("");
-  const [filterLocation, setFilterLocation] = useState("");
-
-  const [filterStatus, setFilterStatus] = useState("");
-  const [filterRelevance, setFilterRelevance] = useState("");
-  const [sortEvidence, setSortEvidence] = useState("");
+  const [filters, dispatch] = useReducer(filterReducer, initialFilters);
 
   return (
     <PageSection title="Evidence Catalogue">
@@ -47,21 +40,8 @@ export function EvidencePage({
         people={file.people}
         locations={file.locations}
 
-        searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
-        filterType={filterType}
-        setFilterType={setFilterType}
-        filterPerson={filterPerson}
-        setFilterPerson={setFilterPerson}
-        filterLocation={filterLocation}
-        setFilterLocation={setFilterLocation}
-
-        filterStatus={filterStatus}
-        setFilterStatus={setFilterStatus}
-        filterRelevance={filterRelevance}
-        setFilterRelevance={setFilterRelevance}
-        sortEvidence={sortEvidence}
-        setSortEvidence={setSortEvidence}
+        filters={filters}
+        filterDispatch={dispatch}
       />
 
       <div id="evidenceListContainer">
@@ -75,13 +55,13 @@ export function EvidencePage({
           ) : (
             filterEvidence(
               file.evidence,
-              searchTerm,
-              filterType,
-              filterPerson,
-              filterLocation,
-              filterStatus,
-              filterRelevance,
-              sortEvidence,
+              filters.searchTerm,
+              filters.filterType,
+              filters.filterPerson,
+              filters.filterLocation,
+              filters.filterStatus,
+              filters.filterRelevance,
+              filters.sortEvidence,
               file,
             ).map((evidence) => (
               <EvidenceCard
@@ -181,4 +161,67 @@ function sortEvidence(list: Evidence[], sortValue: string): Evidence[] {
     );
   }
   return list;
+}
+
+// --------------------------- Settings Reducer ----------------------------------
+export type FilterState = {
+  searchTerm: string;
+  filterType: string;
+  filterPerson: string;
+  filterLocation: string;
+  filterStatus: string;
+  //filterStatus: "" | "unreviewed" | "reviewed" | "flagged";
+  filterRelevance: string;
+  //filterRelevance: "" | "unknown" | "relevant" | "irrelevant";
+  sortEvidence: string;
+  //sortEvidence: "date-desc" | "date-asc" | "title-asc" | "title-desc";
+};
+// TypeScript complains that it cannot assign event.target.value to
+// any state that uses only a subset of allowed values
+
+export type FilterAction =
+  | { type: "searchTermChanged"; searchTerm: string }
+  | { type: "filterTypeChanged"; filterType: string }
+  | { type: "filterPersonChanged"; filterPerson: string }
+  | { type: "filterLocationChanged"; filterLocation: string }
+  | { type: "filterStatusChanged"; filterStatus: FilterState["filterStatus"] }
+  | {
+      type: "filterRelevanceChanged";
+      filterRelevance: FilterState["filterRelevance"];
+    }
+  | {
+      type: "sortEvidenceChanged";
+      sortEvidence: FilterState["sortEvidence"];
+    }
+  | { type: "cleared" };
+
+const initialFilters: FilterState = {
+  searchTerm: "",
+  filterType: "",
+  filterPerson: "",
+  filterLocation: "",
+  filterStatus: "",
+  filterRelevance: "",
+  sortEvidence: "date-desc",
+};
+
+function filterReducer(state: FilterState, action: FilterAction): FilterState {
+  switch (action.type) {
+    case "searchTermChanged":
+      return { ...state, searchTerm: action.searchTerm };
+    case "filterTypeChanged":
+      return { ...state, filterType: action.filterType };
+    case "filterPersonChanged":
+      return { ...state, filterPerson: action.filterPerson };
+    case "filterLocationChanged":
+      return { ...state, filterLocation: action.filterLocation };
+    case "filterStatusChanged":
+      return { ...state, filterStatus: action.filterStatus };
+    case "filterRelevanceChanged":
+      return { ...state, filterRelevance: action.filterRelevance };
+    case "sortEvidenceChanged":
+      return { ...state, sortEvidence: action.sortEvidence };
+    case "cleared":
+      return initialFilters;
+  }
 }

@@ -1,45 +1,21 @@
 import { CaseLocation, Person } from "../../../js/types";
-import { Dispatch, SetStateAction } from "react";
+import { ActionDispatch } from "react";
+import { FilterAction, FilterState } from "./EvidencePage";
 
 type EvidenceToolbarProps = {
   types: string[];
   people: Person[];
   locations: CaseLocation[];
-  searchTerm: string;
-  setSearchTerm: Dispatch<SetStateAction<string>>;
-  filterType: string;
-  setFilterType: Dispatch<SetStateAction<string>>;
-  filterPerson: string;
-  setFilterPerson: Dispatch<SetStateAction<string>>;
-  filterLocation: string;
-  setFilterLocation: Dispatch<SetStateAction<string>>;
-
-  filterStatus: string;
-  setFilterStatus: Dispatch<SetStateAction<string>>;
-  filterRelevance: string;
-  setFilterRelevance: Dispatch<SetStateAction<string>>;
-  sortEvidence: string;
-  setSortEvidence: Dispatch<SetStateAction<string>>;
+  filters: FilterState;
+  filterDispatch: ActionDispatch<[action: FilterAction]>;
 };
 
 export function EvidenceToolbar({
   types,
   people,
   locations,
-  searchTerm,
-  setSearchTerm,
-  filterType,
-  setFilterType,
-  filterPerson,
-  setFilterPerson,
-  filterLocation,
-  setFilterLocation,
-  filterStatus,
-  setFilterStatus,
-  filterRelevance,
-  setFilterRelevance,
-  sortEvidence,
-  setSortEvidence,
+  filters,
+  filterDispatch,
 }: EvidenceToolbarProps) {
   return (
     <div className="toolbar" id="evidenceToolbar">
@@ -52,10 +28,13 @@ export function EvidenceToolbar({
           id="evidenceSearch"
           placeholder="Search evidence by title, summary, or tag&hellip;"
           autoComplete="off"
-          value={searchTerm}
-          onChange={(event) => {
-            setSearchTerm(event.target.value);
-          }}
+          value={filters.searchTerm}
+          onChange={(event) =>
+            filterDispatch({
+              type: "searchTermChanged",
+              searchTerm: event.target.value,
+            })
+          }
         />
 
         <label htmlFor="filterType" className="visually-hidden">
@@ -63,10 +42,13 @@ export function EvidenceToolbar({
         </label>
         <select
           id="filterType"
-          value={filterType}
-          onChange={(event) => {
-            setFilterType(event.target.value);
-          }}
+          value={filters.filterType}
+          onChange={(event) =>
+            filterDispatch({
+              type: "filterTypeChanged",
+              filterType: event.target.value,
+            })
+          }
         >
           <option value="">All types</option>
           {types.map((type) => (
@@ -81,10 +63,13 @@ export function EvidenceToolbar({
         </label>
         <select
           id="filterPerson"
-          value={filterPerson}
-          onChange={(event) => {
-            setFilterPerson(event.target.value);
-          }}
+          value={filters.filterPerson}
+          onChange={(event) =>
+            filterDispatch({
+              type: "filterPersonChanged",
+              filterPerson: event.target.value,
+            })
+          }
         >
           <option value="">All people</option>
           {people.map((person) => (
@@ -99,10 +84,13 @@ export function EvidenceToolbar({
         </label>
         <select
           id="filterLocation"
-          value={filterLocation}
-          onChange={(event) => {
-            setFilterLocation(event.target.value);
-          }}
+          value={filters.filterLocation}
+          onChange={(event) =>
+            filterDispatch({
+              type: "filterLocationChanged",
+              filterLocation: event.target.value,
+            })
+          }
         >
           <option value="">All locations</option>
           {locations.map((location) => (
@@ -118,10 +106,13 @@ export function EvidenceToolbar({
         </label>
         <select
           id="filterStatus"
-          value={filterStatus}
-          onChange={(event) => {
-            setFilterStatus(event.target.value);
-          }}
+          value={filters.filterStatus}
+          onChange={(event) =>
+            filterDispatch({
+              type: "filterStatusChanged",
+              filterStatus: event.target.value,
+            })
+          }
         >
           <option value="">All statuses</option>
           <option value="unreviewed">Unreviewed</option>
@@ -134,10 +125,13 @@ export function EvidenceToolbar({
         </label>
         <select
           id="filterRelevance"
-          value={filterRelevance}
-          onChange={(event) => {
-            setFilterRelevance(event.target.value);
-          }}
+          value={filters.filterRelevance}
+          onChange={(event) =>
+            filterDispatch({
+              type: "filterRelevanceChanged",
+              filterRelevance: event.target.value,
+            })
+          }
         >
           <option value="">All relevance</option>
           <option value="unknown">Unknown</option>
@@ -150,10 +144,13 @@ export function EvidenceToolbar({
         </label>
         <select
           id="sortEvidence"
-          value={sortEvidence}
-          onChange={(event) => {
-            setSortEvidence(event.target.value);
-          }}
+          value={filters.sortEvidence}
+          onChange={(event) =>
+            filterDispatch({
+              type: "sortEvidenceChanged",
+              sortEvidence: event.target.value,
+            })
+          }
         >
           <option value="date-desc">Newest first</option>
           <option value="date-asc">Oldest first</option>
@@ -165,16 +162,7 @@ export function EvidenceToolbar({
           type="button"
           id="clearFiltersBtn"
           className="btn btn-secondary"
-          onClick={() => {
-            setSearchTerm("");
-            setFilterType("");
-            setFilterPerson("");
-            setFilterLocation("");
-
-            setFilterStatus("");
-            setFilterRelevance("");
-            setSortEvidence("");
-          }}
+          onClick={() => filterDispatch({ type: "cleared" })}
         >
           Clear filters
         </button>
