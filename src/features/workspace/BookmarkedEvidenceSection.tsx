@@ -1,4 +1,5 @@
 import { Evidence } from "../../../js/types";
+import { useNavigate } from "react-router";
 
 type BookmarkedEvidenceSectionProps = {
   bookmarkedEvidence: Evidence[];
@@ -7,6 +8,9 @@ type BookmarkedEvidenceSectionProps = {
 export function BookmarkedEvidenceSection({
   bookmarkedEvidence,
 }: BookmarkedEvidenceSectionProps) {
+  // Required for "open" buttons
+  const navigate = useNavigate();
+
   return (
     <div className="workspace-col">
       <h3>Bookmarked Evidence</h3>
@@ -22,7 +26,7 @@ export function BookmarkedEvidenceSection({
               <button
                 type="button"
                 className="btn btn-small btn-secondary"
-                data-open-evidence={evidence.id}
+                onClick={() => navigate(`/evidence?evidence=${evidence.id}`)}
               >
                 Open
               </button>

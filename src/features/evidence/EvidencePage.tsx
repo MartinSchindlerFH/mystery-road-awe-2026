@@ -1,22 +1,35 @@
 import { EvidenceToolbar } from "./EvidenceToolbar";
 import { PageSection } from "../../components/PageSection";
-import { CaseFile, saveBookmarks } from "../../../js/data/caseData";
+import { CaseFile } from "../../../js/data/caseData";
 import { EvidenceCard } from "./EvidenceCard";
 import type { Evidence } from "../../../js/types";
 import { evidenceMentionsPerson } from "../../../js/utils";
-import { Dispatch, SetStateAction, useState } from "react";
+import { useState } from "react";
+import { EvidenceDetail } from "./EvidenceDetail";
+import { useSearchParams } from "react-router";
 
 type EvidencePageProps = {
   file: CaseFile;
   bookmarks: string[];
-  setBookmarks: Dispatch<SetStateAction<string[]>>;
+  onToggleBookmark: (evidenceId: string) => void;
 };
 
 export function EvidencePage({
   file,
   bookmarks,
-  setBookmarks,
+  onToggleBookmark,
 }: EvidencePageProps) {
+  const [searchParams] = useSearchParams();
+  const paramEvidenceId = searchParams.get("evidence") ?? "";
+
+  const [selectedEvidence, setSelectedEvidence] = useState<
+    Evidence | undefined
+  >(
+    paramEvidenceId === ""
+      ? undefined
+      : file.evidence.filter((ev) => ev.id === paramEvidenceId).at(0),
+  );
+
   const [searchTerm, setSearchTerm] = useState("");
   const [filterType, setFilterType] = useState("");
   const [filterPerson, setFilterPerson] = useState("");
@@ -60,7 +73,6 @@ export function EvidencePage({
           {file.evidence.length === 0 ? (
             <p>No evidence matches the current filters.</p>
           ) : (
-            // TODO filtering currently uses default values
             filterEvidence(
               file.evidence,
               searchTerm,
@@ -75,18 +87,28 @@ export function EvidencePage({
               <EvidenceCard
                 evidence={evidence}
                 isBookmarked={bookmarks.indexOf(evidence.id) !== -1}
-                handleToggleBookmark={() =>
-                  handleToggleBookmark(evidence.id, bookmarks, setBookmarks)
+                handleToggleBookmark={() => onToggleBookmark(evidence.id)}
+                handleShowEvidenceDetailView={() =>
+                  setSelectedEvidence(evidence)
                 }
+                key={evidence.id}
               />
             ))
           )}
         </div>
       </div>
 
-      <div id="evidenceDetailSection" className="evidence-detail hidden">
-        // TODO add EvidenceDetail element as soon as the event listener works
-      </div>
+      {selectedEvidence === undefined ? (
+        ""
+      ) : (
+        <div id="evidenceDetailSection" className="evidence-detail">
+          <EvidenceDetail
+            evidence={selectedEvidence}
+            people={file.people}
+            locations={file.locations}
+          />
+        </div>
+      )}
     </PageSection>
   );
 }
@@ -159,21 +181,4 @@ function sortEvidence(list: Evidence[], sortValue: string): Evidence[] {
     );
   }
   return list;
-}
-
-function handleToggleBookmark(
-  evidenceId: string,
-  previousBookmarks: string[],
-  setBookmarks: Dispatch<SetStateAction<string[]>>,
-) {
-  // Copy array to ensure the state is provided a new object
-  let bookmarks = [...previousBookmarks];
-  if (bookmarks.includes(evidenceId)) {
-    // Remove bookmark
-    bookmarks = bookmarks.filter((id) => !bookmarks.includes(id));
-  } else {
-    bookmarks.push(evidenceId);
-  }
-  setBookmarks(bookmarks);
-  saveBookmarks(bookmarks);
 }

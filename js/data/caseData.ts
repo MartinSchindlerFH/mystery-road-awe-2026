@@ -47,16 +47,27 @@ export function saveBookmarks(bookmarks: string[]) {
   localStorage.setItem(STORAGE_KEY_BOOKMARKS, JSON.stringify(bookmarks));
 }
 
+function loadNotes(): Map<string, string> {
+  const stored = localStorage.getItem(STORAGE_KEY_NOTES);
+  if (stored === null) return new Map();
+
+  const entries: [string, string][] = JSON.parse(stored);
+  return new Map(entries);
+}
+
 export function loadNoteForEvidence(evidenceId: string): string {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY_NOTES);
-    const parsed: Map<string, string> = raw
-      ? JSON.parse(raw)
-      : new Map<string, string>();
-    return parsed.get(evidenceId) ?? "";
+    const notes = loadNotes();
+    return notes.get(evidenceId) ?? "";
   } catch {
     return "";
   }
+}
+
+export function saveNoteForEvidence(evidenceId: string, note: string) {
+  const notes = loadNotes();
+  notes.set(evidenceId, note);
+  localStorage.setItem(STORAGE_KEY_NOTES, JSON.stringify([...notes]));
 }
 
 export function saveHypothesis(hypothesis: Hypothesis): void {

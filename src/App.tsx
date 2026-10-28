@@ -10,7 +10,8 @@ import { AppFooter } from "./shell/AppFooter.jsx";
 import { AppHeader } from "./shell/AppHeader.jsx";
 import { LoadingOverlay } from "./shell/LoadingOverlay.jsx";
 import { NotFoundPage } from "./shell/NotFoundPage.jsx";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
+import { saveBookmarks } from "../js/data/caseData";
 
 type PagesProps = {
   caseFile: CaseFileState;
@@ -37,7 +38,9 @@ function Pages({ caseFile }: PagesProps) {
           <EvidencePage
             file={file}
             bookmarks={bookmarks}
-            setBookmarks={setBookmarks}
+            onToggleBookmark={(evidenceId: string) =>
+              handleToggleBookmark(evidenceId, bookmarks, setBookmarks)
+            }
           />
         }
       />
@@ -79,4 +82,21 @@ export function App() {
       <AppFooter />
     </>
   );
+}
+
+function handleToggleBookmark(
+  evidenceId: string,
+  previousBookmarks: string[],
+  setBookmarks: Dispatch<SetStateAction<string[]>>,
+) {
+  // Copy array to ensure the state is provided a new object
+  let bookmarks = [...previousBookmarks];
+  if (bookmarks.includes(evidenceId)) {
+    // Remove bookmark
+    bookmarks = bookmarks.filter((id) => !bookmarks.includes(id));
+  } else {
+    bookmarks.push(evidenceId);
+  }
+  setBookmarks(bookmarks);
+  saveBookmarks(bookmarks);
 }

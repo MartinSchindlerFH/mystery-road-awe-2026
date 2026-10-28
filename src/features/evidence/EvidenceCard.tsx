@@ -9,22 +9,21 @@ type EvidenceCardProp = {
   evidence: Evidence;
   isBookmarked: boolean;
   handleToggleBookmark: () => void;
+  handleShowEvidenceDetailView: () => void;
 };
 
 export function EvidenceCard({
   evidence,
   isBookmarked,
   handleToggleBookmark,
+  handleShowEvidenceDetailView,
 }: EvidenceCardProp) {
   return (
     <div
       className="evidence-card"
       data-id={evidence.id}
       key={evidence.id}
-      onClick={() => {
-        // TODO missing state management (comes in task 2) causes no re-renders to happen if another card is selected
-        alert(`Card ${evidence.id} clicked`);
-      }}
+      onClick={handleShowEvidenceDetailView}
     >
       <button
         className={`bookmark-btn ${isBookmarked ? "active" : ""}`}
@@ -57,7 +56,9 @@ export function EvidenceCard({
       </span>
       <div>
         {evidence.tags.map((tag) => (
-          <span className="tag-chip">{tag}</span>
+          <span className="tag-chip" key={tag}>
+            {tag}
+          </span>
         ))}
       </div>
     </div>
