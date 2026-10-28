@@ -21,8 +21,8 @@ export function BookmarkedEvidenceSection({
           </p>
         ) : (
           bookmarkedEvidence.map((evidence) => (
-            <div className="mini-list-item">
-              <strong>{evidence.id}</strong> &mdash; {evidence.title}
+            <div className="mini-list-item" key={evidence.id}>
+              <strong>{evidence.id}</strong> &mdash; {evidence.title} &nbsp;
               <button
                 type="button"
                 className="btn btn-small btn-secondary"

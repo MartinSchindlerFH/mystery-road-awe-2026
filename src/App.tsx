@@ -69,21 +69,22 @@ export function App() {
 
 // --------------------------- Bookmark Context ----------------------------------
 type BookmarkContextValue = {
-  bookmarkedIds: string[];
+  bookmarkedIds: Set<string>;
   toggleBookmark: (id: string) => void;
 };
 
 export const BookmarkContext = createContext<BookmarkContextValue | null>(null);
 
 function BookmarkProvider({ children }: { children: ReactNode }) {
-  const [bookmarkedIds, setBookmarkedIds] = useState<string[]>(loadBookmarks());
+  const [bookmarkedIds, setBookmarkedIds] =
+    useState<Set<string>>(loadBookmarks());
 
   function toggleBookmark(evidenceId: string) {
-    let next = [...bookmarkedIds];
-    if (next.indexOf(evidenceId) !== -1) {
-      next = next.filter((ev) => ev !== evidenceId);
+    const next = new Set(bookmarkedIds);
+    if (next.has(evidenceId)) {
+      next.delete(evidenceId);
     } else {
-      next.push(evidenceId);
+      next.add(evidenceId);
     }
 
     setBookmarkedIds(next);

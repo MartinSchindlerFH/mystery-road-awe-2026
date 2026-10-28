@@ -19,7 +19,7 @@ export function EvidenceCard({
   const bookmarkProvider = useContext(BookmarkContext);
 
   const isBookmarked =
-    (bookmarkProvider?.bookmarkedIds.indexOf(evidence.id) ?? -1) !== -1;
+    bookmarkProvider?.bookmarkedIds.has(evidence.id) ?? false;
 
   return (
     <div

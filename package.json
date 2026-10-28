@@ -10,8 +10,8 @@
     "build": "tsc --noEmit && vite build --base=./",
     "preview": "vite preview",
     "type:check": "tsc --noEmit",
-    "lint:check": "eslint v1 src",
-    "lint:fix": "eslint v1 src --fix",
+    "lint:check": "eslint js v1 src",
+    "lint:fix": "eslint js v1 src --fix",
     "format:check": "prettier --check js v1 src",
     "format:fix": "prettier --write js v1 src",
     "start": "serve ."

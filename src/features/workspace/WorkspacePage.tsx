@@ -17,8 +17,7 @@ export function WorkspacePage({ file }: WorkspacePageProps) {
       <div className="workspace-grid">
         <BookmarkedEvidenceSection
           bookmarkedEvidence={file.evidence.filter(
-            (ev) =>
-              (bookmarkProvider?.bookmarkedIds.indexOf(ev.id) ?? -1) !== -1,
+            (ev) => bookmarkProvider?.bookmarkedIds.has(ev.id) ?? false,
           )}
         />
 

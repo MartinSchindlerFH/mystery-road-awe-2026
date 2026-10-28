@@ -30,12 +30,17 @@ export async function loadCaseFile(): Promise<CaseFile> {
   return { caseData, people, locations, evidence, timeline };
 }
 
-export function loadBookmarks(): string[] {
-  return JSON.parse(<string>localStorage.getItem(STORAGE_KEY_BOOKMARKS)) ?? [];
+export function loadBookmarks(): Set<string> {
+  return new Set<string>(
+    JSON.parse(<string>localStorage.getItem(STORAGE_KEY_BOOKMARKS)) ?? [],
+  );
 }
 
-export function saveBookmarks(bookmarks: string[]) {
-  localStorage.setItem(STORAGE_KEY_BOOKMARKS, JSON.stringify(bookmarks));
+export function saveBookmarks(bookmarks: Set<string>) {
+  localStorage.setItem(
+    STORAGE_KEY_BOOKMARKS,
+    JSON.stringify(bookmarks.values().toArray()),
+  );
 }
 
 function loadNotes(): Map<string, string> {

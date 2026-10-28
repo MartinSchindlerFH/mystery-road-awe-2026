@@ -4,7 +4,7 @@ import { loadCaseFile, loadBookmarks, type CaseFile } from "./caseData.js";
 export type CaseFileState =
   | { status: "loading" }
   | { status: "error"; message: string }
-  | { status: "ready"; file: CaseFile; bookmarks: string[] };
+  | { status: "ready"; file: CaseFile; bookmarks: Set<string> };
 
 export function useCaseFile(): CaseFileState {
   const [state, setState] = useState<CaseFileState>({ status: "loading" });

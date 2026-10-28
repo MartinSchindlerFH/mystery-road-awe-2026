@@ -31,7 +31,7 @@ export function DashboardPage({ file }: DashboardPageProps) {
         <StatCard value={file.people.length} label="People" />
         <StatCard value={file.locations.length} label="Locations" />
         <StatCard
-          value={bookmarkProvider?.bookmarkedIds.length ?? 0}
+          value={bookmarkProvider?.bookmarkedIds.size ?? 0}
           label="Bookmarked"
         />
         <StatCard value={reviewedCount} label="Reviewed" />

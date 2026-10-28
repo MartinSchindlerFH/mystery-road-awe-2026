@@ -78,6 +78,7 @@ export function EvidencePage({ file }: EvidencePageProps) {
             evidence={selectedEvidence}
             people={file.people}
             locations={file.locations}
+            handleCloseDetailView={() => setSelectedEvidence(undefined)}
           />
         </div>
       )}

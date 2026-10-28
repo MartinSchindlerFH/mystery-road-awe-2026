@@ -10,12 +10,14 @@ type EvidenceDetail = {
   evidence: Evidence;
   people: Person[];
   locations: CaseLocation[];
+  handleCloseDetailView: () => void;
 };
 
 export function EvidenceDetail({
   evidence,
   people,
   locations,
+  handleCloseDetailView,
 }: EvidenceDetail) {
   const [note, setNote] = useState<string>(loadNoteForEvidence(evidence.id));
   const [reviewStatus, setReviewStatus] = useState(evidence.status);
@@ -32,7 +34,8 @@ export function EvidenceDetail({
         </div>
         <button
           type="button"
-          className="btn btn-secondary btn-small" /*onclick="closeEvidenceDetail()"*/
+          className="btn btn-secondary btn-small"
+          onClick={handleCloseDetailView}
         >
           Close
         </button>
