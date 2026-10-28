@@ -6,13 +6,16 @@ import { RecentEvidenceList } from "./RecentEvidenceList.jsx";
 import { RecentTimelineList } from "./RecentTimelineList.jsx";
 import { ReviewProgress } from "./ReviewProgress.jsx";
 import { StatCard } from "./StatCard.jsx";
+import { BookmarkContext } from "../../App";
+import { useContext } from "react";
 
 type DashboardPageProps = {
   file: CaseFile;
-  bookmarks: string[];
 };
 
-export function DashboardPage({ file, bookmarks }: DashboardPageProps) {
+export function DashboardPage({ file }: DashboardPageProps) {
+  const bookmarkProvider = useContext(BookmarkContext);
+
   const reviewedCount = file.evidence.filter(
     (ev) => ev.status.toLowerCase() === "reviewed",
   ).length;
@@ -27,7 +30,10 @@ export function DashboardPage({ file, bookmarks }: DashboardPageProps) {
         <StatCard value={file.evidence.length} label="Evidence items" />
         <StatCard value={file.people.length} label="People" />
         <StatCard value={file.locations.length} label="Locations" />
-        <StatCard value={bookmarks.length} label="Bookmarked" />
+        <StatCard
+          value={bookmarkProvider?.bookmarkedIds.length ?? 0}
+          label="Bookmarked"
+        />
         <StatCard value={reviewedCount} label="Reviewed" />
       </div>
       <ReviewProgress reviewed={reviewedCount} total={file.evidence.length} />

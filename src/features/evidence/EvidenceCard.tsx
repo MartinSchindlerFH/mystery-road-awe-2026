@@ -4,36 +4,37 @@ import {
   getRelevanceBadgeClass,
   getStatusBadgeClass,
 } from "../../../js/utils";
+import { useContext } from "react";
+import { BookmarkContext } from "../../App";
 
 type EvidenceCardProp = {
   evidence: Evidence;
-  isBookmarked: boolean;
-  handleToggleBookmark: () => void;
   handleShowEvidenceDetailView: () => void;
 };
 
 export function EvidenceCard({
   evidence,
-  isBookmarked,
-  handleToggleBookmark,
   handleShowEvidenceDetailView,
 }: EvidenceCardProp) {
+  const bookmarkProvider = useContext(BookmarkContext);
+
+  const isBookmarked =
+    (bookmarkProvider?.bookmarkedIds.indexOf(evidence.id) ?? -1) !== -1;
+
   return (
     <div
       className="evidence-card"
-      data-id={evidence.id}
       key={evidence.id}
       onClick={handleShowEvidenceDetailView}
     >
       <button
         className={`bookmark-btn ${isBookmarked ? "active" : ""}`}
         data-action="bookmark"
-        data-id={evidence.id}
         aria-label={`Toggle bookmark for ${evidence.id}`}
         onClick={(event) => {
           // Prevent the higher-level handler opening the Detail view from firing
           event.stopPropagation();
-          handleToggleBookmark();
+          bookmarkProvider?.toggleBookmark(evidence.id);
         }}
       >
         <span className={"bookmark-icon"}>{isBookmarked ? "★" : "☆"}</span>

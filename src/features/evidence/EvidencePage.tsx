@@ -10,15 +10,9 @@ import { useSearchParams } from "react-router";
 
 type EvidencePageProps = {
   file: CaseFile;
-  bookmarks: string[];
-  onToggleBookmark: (evidenceId: string) => void;
 };
 
-export function EvidencePage({
-  file,
-  bookmarks,
-  onToggleBookmark,
-}: EvidencePageProps) {
+export function EvidencePage({ file }: EvidencePageProps) {
   const [searchParams] = useSearchParams();
   const paramEvidenceId = searchParams.get("evidence") ?? "";
 
@@ -66,8 +60,6 @@ export function EvidencePage({
             ).map((evidence) => (
               <EvidenceCard
                 evidence={evidence}
-                isBookmarked={bookmarks.indexOf(evidence.id) !== -1}
-                handleToggleBookmark={() => onToggleBookmark(evidence.id)}
                 handleShowEvidenceDetailView={() =>
                   setSelectedEvidence(evidence)
                 }

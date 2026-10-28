@@ -4,7 +4,6 @@ import type {
   Evidence,
   Hypothesis,
   Person,
-  PersonId,
   TimelineEvent,
 } from "../types";
 
@@ -32,15 +31,7 @@ export async function loadCaseFile(): Promise<CaseFile> {
 }
 
 export function loadBookmarks(): string[] {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY_BOOKMARKS);
-    const parsed: unknown = raw ? JSON.parse(raw) : [];
-    return Array.isArray(parsed)
-      ? parsed.filter((id) => typeof id === "string")
-      : [];
-  } catch {
-    return [];
-  }
+  return JSON.parse(<string>localStorage.getItem(STORAGE_KEY_BOOKMARKS)) ?? [];
 }
 
 export function saveBookmarks(bookmarks: string[]) {
