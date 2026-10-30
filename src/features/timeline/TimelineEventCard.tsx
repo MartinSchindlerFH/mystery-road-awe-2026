@@ -24,7 +24,7 @@ export function TimelineEventCard({
           Location:{" "}
           {event.locationIds
             .map((id) => {
-              let location = getObjectById(locations, id);
+              const location = getObjectById(locations, id);
               return location ? `${id} - ${location.name}` : id;
             })
             .join(", ")}

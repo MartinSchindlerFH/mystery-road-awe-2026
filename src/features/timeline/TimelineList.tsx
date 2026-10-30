@@ -1,7 +1,6 @@
 import type { CaseLocation, TimelineEvent } from "../../../js/types";
 import { TimelineEventCard } from "./TimelineEventCard.jsx";
-import { FilterAction, FilterState } from "./TimelinePage";
-import { ActionDispatch } from "react";
+import { FilterState } from "./TimelinePage";
 
 type TimelineListProps = {
   events: TimelineEvent[];
@@ -29,19 +28,19 @@ export function TimelineList({
 
 function filterEvents(events: TimelineEvent[], filters: FilterState) {
   return events
-      .filter((event) =>
-          filters.filterType !== "" ? event.type === filters.filterType : true,
-      )
-      .filter((event) =>
-          filters.filterLocation !== ""
-              ? event.locationIds.includes(filters.filterLocation)
-              : true,
-      )
-      .filter((event) =>
-          filters.filterPerson !== ""
-              ? event.personIds.some((id) => id === filters.filterPerson)
-              : true,
-      );
+    .filter((event) =>
+      filters.filterType !== "" ? event.type === filters.filterType : true,
+    )
+    .filter((event) =>
+      filters.filterLocation !== ""
+        ? event.locationIds.includes(filters.filterLocation)
+        : true,
+    )
+    .filter((event) =>
+      filters.filterPerson !== ""
+        ? event.personIds.some((id) => id === filters.filterPerson)
+        : true,
+    );
 }
 
 function sortEvents(
