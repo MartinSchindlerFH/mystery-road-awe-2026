@@ -7,11 +7,16 @@ type TabLinkProps = {
 
 export function TabLink({ to, label }: TabLinkProps) {
   return (
-    <NavLink
-      to={to}
-      className={({ isActive }) => (isActive ? "tab-btn active" : "tab-btn")}
-    >
-      {label}
+    <NavLink to={to}>
+      {({ isActive }) => (
+        <button
+          type="button"
+          id={`tab${label}Btn`}
+          className={`tab-btn ${isActive ? "active" : ""}`}
+        >
+          {label}
+        </button>
+      )}
     </NavLink>
   );
 }
