@@ -47,16 +47,9 @@ export function EvidencePage({ file }: EvidencePageProps) {
           {file.evidence.length === 0 ? (
             <p>No evidence matches the current filters.</p>
           ) : (
-            filterEvidence(
-              file.evidence,
-              filters.searchTerm,
-              filters.filterType,
-              filters.filterPerson,
-              filters.filterLocation,
-              filters.filterStatus,
-              filters.filterRelevance,
+            sortEvidence(
+              filterEvidence(file.evidence, filters, file),
               filters.sortEvidence,
-              file,
             ).map((evidence) => (
               <EvidenceCard
                 evidence={evidence}
@@ -88,13 +81,7 @@ export function EvidencePage({ file }: EvidencePageProps) {
 
 function filterEvidence(
   allEvidence: Evidence[],
-  searchTerm: string,
-  typeVal: string,
-  personVal: string,
-  locationVal: string,
-  statusVal: string,
-  relevanceVal: string,
-  sortVal: string,
+  filters: FilterState,
   caseFile: CaseFile,
 ): Evidence[] {
   const results = [];
@@ -102,7 +89,7 @@ function filterEvidence(
     const item = allEvidence[i];
     let matches = true;
 
-    if (searchTerm) {
+    if (filters.searchTerm) {
       const haystack = (
         item.title +
         " " +
@@ -110,31 +97,43 @@ function filterEvidence(
         " " +
         item.tags.join(" ")
       ).toLowerCase();
-      if (haystack.indexOf(searchTerm) === -1) matches = false;
+      if (haystack.indexOf(filters.searchTerm) === -1) matches = false;
     }
-    if (matches && typeVal && item.type.toLowerCase() !== typeVal)
+    if (
+      matches &&
+      filters.filterType &&
+      item.type.toLowerCase() !== filters.filterType
+    )
       matches = false;
-    if (matches && personVal) {
+    if (matches && filters.filterPerson) {
       const person = caseFile.people.filter(
-        (person) => person.id == personVal,
+        (person) => person.id == filters.filterPerson,
       )[0];
       if (!person || item.personIds.includes(person.id)) matches = false;
     }
-    if (matches && locationVal && item.locationIds.indexOf(locationVal) === -1)
-      matches = false;
-    if (matches && statusVal && (item.status || "").toLowerCase() !== statusVal)
+    if (
+      matches &&
+      filters.filterLocation &&
+      item.locationIds.indexOf(filters.filterLocation) === -1
+    )
       matches = false;
     if (
       matches &&
-      relevanceVal &&
-      (item.relevance || "").toLowerCase() !== relevanceVal
+      filters.filterStatus &&
+      (item.status || "").toLowerCase() !== filters.filterStatus
+    )
+      matches = false;
+    if (
+      matches &&
+      filters.filterRelevance &&
+      (item.relevance || "").toLowerCase() !== filters.filterRelevance
     )
       matches = false;
 
     if (matches) results.push(item);
   }
 
-  return sortEvidence(results, sortVal);
+  return results;
 }
 
 function sortEvidence(list: Evidence[], sortValue: string): Evidence[] {

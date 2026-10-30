@@ -21,14 +21,16 @@ export function TimelineList({
 
   return (
     <div className="timeline-container">
-      {sortEvents(filterEvents(events, filters), filters).map((event) => (
-        <TimelineEventCard
-          key={event.id}
-          event={event}
-          locations={locations}
-          selectEvidence={selectEvidence}
-        />
-      ))}
+      {sortEvents(filterEvents(events, filters), filters.sortTimeline).map(
+        (event) => (
+          <TimelineEventCard
+            key={event.id}
+            event={event}
+            locations={locations}
+            selectEvidence={selectEvidence}
+          />
+        ),
+      )}
     </div>
   );
 }
@@ -50,11 +52,8 @@ function filterEvents(events: TimelineEvent[], filters: FilterState) {
     );
 }
 
-function sortEvents(
-  events: TimelineEvent[],
-  filters: FilterState,
-): TimelineEvent[] {
-  switch (filters.sortTimeline) {
+function sortEvents(events: TimelineEvent[], sort: string): TimelineEvent[] {
+  switch (sort) {
     case "asc":
       return events.sort((a, b) => a.time.localeCompare(b.time));
     case "desc":
