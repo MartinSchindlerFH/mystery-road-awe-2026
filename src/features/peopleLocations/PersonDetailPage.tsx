@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router";
-import { Badge, statusTone } from "../../components/Badge.jsx";
+import { StatusBadge } from "../../components/Badge.jsx";
 import { PageSection } from "../../components/PageSection.jsx";
 import type { CaseFile } from "../../../js/data/caseData.js";
 import { NotFoundPage } from "../../shell/NotFoundPage.jsx";
@@ -33,7 +33,7 @@ export function PersonDetailPage({ file }: PersonDetailPageProps) {
           {related.map((ev) => (
             <li key={ev.id}>
               <strong>{ev.id}</strong> - {ev.title}{" "}
-              <Badge label={ev.status} tone={statusTone(ev.status)} />
+              <StatusBadge status={ev.status} />
             </li>
           ))}
         </ul>

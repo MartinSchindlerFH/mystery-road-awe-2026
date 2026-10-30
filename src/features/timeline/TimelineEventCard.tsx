@@ -1,6 +1,6 @@
 import type { CaseLocation, TimelineEvent } from "../../../js/types";
 import { formatDate, getObjectById } from "../../../js/utils.js";
-import { Badge, certaintyTone } from "../../components/Badge.jsx";
+import { CertaintyBadge } from "../../components/Badge";
 
 type TimelineEventCardProps = {
   event: TimelineEvent;
@@ -17,7 +17,7 @@ export function TimelineEventCard({
     <div className={"timeline-event certainty-" + event.certainty}>
       <div className="timeline-time">
         {formatDate(event.time)} -{" "}
-        <Badge label={event.certainty} tone={certaintyTone(event.certainty)} />
+        <CertaintyBadge certainty={event.certainty} />
       </div>
       <h3>{event.title}</h3>
       <p>{event.description}</p>

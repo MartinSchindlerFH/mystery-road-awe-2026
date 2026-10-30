@@ -1,5 +1,5 @@
 import type { Evidence } from "../../../js/types";
-import { Badge, statusTone } from "../../components/Badge.jsx";
+import { StatusBadge } from "../../components/Badge.jsx";
 import { Panel } from "./Panel.jsx";
 
 type RecentEvidenceListProps = {
@@ -13,7 +13,7 @@ export function RecentEvidenceList({ evidence }: RecentEvidenceListProps) {
       {evidence.map((ev) => (
         <div key={ev.id} className="mini-list-item">
           <strong>{ev.id}</strong> - {ev.title}{" "}
-          <Badge label={ev.status} tone={statusTone(ev.status)} />
+          <StatusBadge status={ev.status} />
         </div>
       ))}
     </Panel>

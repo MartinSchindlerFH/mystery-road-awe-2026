@@ -10,37 +10,62 @@ export function Badge({ label, tone }: BadgeProps) {
   return <span className={"badge badge-" + tone}>{label}</span>;
 }
 
-export function statusTone(status: string): BadgeTone {
-  const s = status.toLowerCase();
-  switch (s) {
+type StatusBadgeProps = {
+  status: string;
+};
+
+export function StatusBadge({ status }: StatusBadgeProps) {
+  let tone: BadgeTone;
+  switch ((status || "").toLowerCase()) {
     case "reviewed":
-      return "reviewed";
+      tone = "reviewed";
+      break;
     case "flagged":
-      return "flagged";
+      tone = "flagged";
+      break;
     default:
-      return "unreviewed";
+      tone = "unreviewed";
+      break;
   }
+  return <Badge label={status} tone={tone} />;
 }
 
-export function certaintyTone(certainty: string): BadgeTone {
-  switch (certainty) {
+type CertaintyBadgeProps = {
+  certainty: string;
+};
+
+export function CertaintyBadge({ certainty }: CertaintyBadgeProps) {
+  let tone: BadgeTone;
+  switch ((certainty || "").toLowerCase()) {
     case "confirmed":
-      return "reviewed";
+      tone = "reviewed";
+      break;
     case "contradictory":
-      return "critical";
+      tone = "critical";
+      break;
     case "reported":
-      return "flagged";
+      tone = "flagged";
+      break;
     default:
-      return "unreviewed";
+      tone = "unreviewed";
+      break;
   }
+  return <Badge label={certainty} tone={tone} />;
 }
 
-export function relevanceTone(relevance: string): BadgeTone {
-  const s = (relevance || "").toLowerCase();
-  switch (s) {
+type RelevanceBadgeProps = {
+  relevance: string;
+};
+
+export function RelevanceBadge({ relevance }: RelevanceBadgeProps) {
+  let tone: BadgeTone;
+  switch ((relevance || "").toLowerCase()) {
     case "relevant":
-      return "relevant";
+      tone = "relevant";
+      break;
     default:
-      return "unreviewed";
+      tone = "unreviewed";
+      break;
   }
+  return <Badge label={relevance} tone={tone} />;
 }

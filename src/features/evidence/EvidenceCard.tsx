@@ -2,7 +2,7 @@ import { Evidence } from "../../../js/types";
 import { formatDate } from "../../../js/utils";
 import { useContext } from "react";
 import { BookmarkContext } from "../../App";
-import { Badge, relevanceTone, statusTone } from "../../components/Badge";
+import { RelevanceBadge, StatusBadge } from "../../components/Badge";
 
 type EvidenceCardProp = {
   evidence: Evidence;
@@ -45,11 +45,8 @@ export function EvidenceCard({
       ) : (
         ""
       )}
-      <Badge label={evidence.status} tone={statusTone(evidence.status)} />
-      <Badge
-        label={evidence.relevance}
-        tone={relevanceTone(evidence.relevance)}
-      />
+      <StatusBadge status={evidence.status} />
+      <RelevanceBadge relevance={evidence.relevance} />
       <div>
         {evidence.tags.map((tag) => (
           <span className="tag-chip" key={tag}>
