@@ -1,15 +1,15 @@
-import type { TimelineEvent } from "../../../js/types";
-import { formatDate } from "../../../js/utils.js";
+import type { CaseLocation, TimelineEvent } from "../../../js/types";
+import { formatDate, getObjectById } from "../../../js/utils.js";
 import { Badge, certaintyTone } from "../../components/Badge.jsx";
 
 type TimelineEventCardProps = {
   event: TimelineEvent;
-  locationNames: string[];
+  locations: CaseLocation[];
 };
 
 export function TimelineEventCard({
   event,
-  locationNames,
+  locations,
 }: TimelineEventCardProps) {
   return (
     <div className={"timeline-event certainty-" + event.certainty}>
@@ -19,8 +19,16 @@ export function TimelineEventCard({
       </div>
       <h3>{event.title}</h3>
       <p>{event.description}</p>
-      {locationNames.length > 0 && (
-        <p className="evidence-meta">Location: {locationNames.join(", ")}</p>
+      {event.locationIds.length > 0 && (
+        <p className="evidence-meta">
+          Location:{" "}
+          {event.locationIds
+            .map((id) => {
+              let location = getObjectById(locations, id);
+              return location ? `${id} - ${location.name}` : id;
+            })
+            .join(", ")}
+        </p>
       )}
       {event.evidenceIds.map((id) => (
         <button key={id} type="button" className="evidence-link-btn">
