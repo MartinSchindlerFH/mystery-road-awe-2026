@@ -5,11 +5,13 @@ import { Badge, certaintyTone } from "../../components/Badge.jsx";
 type TimelineEventCardProps = {
   event: TimelineEvent;
   locations: CaseLocation[];
+  selectEvidence: (evidenceId: string) => void;
 };
 
 export function TimelineEventCard({
   event,
   locations,
+  selectEvidence,
 }: TimelineEventCardProps) {
   return (
     <div className={"timeline-event certainty-" + event.certainty}>
@@ -31,7 +33,12 @@ export function TimelineEventCard({
         </p>
       )}
       {event.evidenceIds.map((id) => (
-        <button key={id} type="button" className="evidence-link-btn">
+        <button
+          key={id}
+          type="button"
+          className="evidence-link-btn"
+          onClick={() => selectEvidence(id)}
+        >
           View {id}
         </button>
       ))}

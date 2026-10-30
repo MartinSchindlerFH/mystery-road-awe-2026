@@ -6,12 +6,14 @@ type TimelineListProps = {
   events: TimelineEvent[];
   locations: CaseLocation[];
   filters: FilterState;
+  selectEvidence: (evidenceId: string) => void;
 };
 
 export function TimelineList({
   events,
   locations,
   filters,
+  selectEvidence,
 }: TimelineListProps) {
   if (events.length === 0) {
     return <p>No timeline events match the current filters.</p>;
@@ -20,7 +22,12 @@ export function TimelineList({
   return (
     <div className="timeline-container">
       {sortEvents(filterEvents(events, filters), filters).map((event) => (
-        <TimelineEventCard key={event.id} event={event} locations={locations} />
+        <TimelineEventCard
+          key={event.id}
+          event={event}
+          locations={locations}
+          selectEvidence={selectEvidence}
+        />
       ))}
     </div>
   );

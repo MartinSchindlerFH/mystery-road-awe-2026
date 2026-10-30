@@ -16,6 +16,7 @@ export function EvidencePage({ file }: EvidencePageProps) {
   const [searchParams] = useSearchParams();
   const paramEvidenceId = searchParams.get("evidence") ?? "";
 
+  // TODO scroll to evidence detail when evidence is selected (either via param or state)
   const [selectedEvidence, setSelectedEvidence] = useState<
     Evidence | undefined
   >(

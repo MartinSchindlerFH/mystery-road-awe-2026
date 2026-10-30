@@ -3,7 +3,10 @@ import { PageSection } from "../../components/PageSection.jsx";
 import type { CaseFile } from "../../../js/data/caseData.js";
 import { TimelineList } from "./TimelineList.jsx";
 import { TimelineToolbar } from "./TimelineToolbar.jsx";
-import { useReducer } from "react";
+import { useReducer, useState } from "react";
+import { TimelineEvidenceModal } from "./TimelineEvidenceModal";
+import { getObjectById } from "../../../js/utils";
+import { Evidence } from "../../../js/types";
 
 type TimelinePageProps = {
   file: CaseFile;
@@ -18,12 +21,10 @@ export function TimelinePage({ file }: TimelinePageProps) {
     initialFilters(selectedPerson),
   );
 
-  const events = file.timeline
-    .filter(
-      (event) =>
-        !selectedPerson || event.personIds.some((id) => id === selectedPerson),
-    )
-    .sort((a, b) => new Date(a.time).getTime() - new Date(b.time).getTime());
+  const [selectedEvidence, setSelectedEvidence] = useState<
+    Evidence | undefined
+  >(undefined);
+
   const types = [...new Set(file.timeline.map((event) => event.type))];
 
   return (
@@ -36,10 +37,21 @@ export function TimelinePage({ file }: TimelinePageProps) {
         filterDispatch={dispatch}
       />
       <TimelineList
-        events={events}
+        events={file.timeline}
         locations={file.locations}
         filters={filters}
+        selectEvidence={(evidenceId) =>
+          setSelectedEvidence(getObjectById(file.evidence, evidenceId))
+        }
       />
+      {selectedEvidence ? (
+        <TimelineEvidenceModal
+          selectedEvidence={selectedEvidence}
+          clearSelectedEvidence={() => setSelectedEvidence(undefined)}
+        />
+      ) : (
+        ""
+      )}
     </PageSection>
   );
 }
