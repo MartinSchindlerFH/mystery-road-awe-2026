@@ -34,13 +34,6 @@ export const getRelevanceBadgeClass = (
   return "badge-unreviewed";
 };
 
-export const certaintyBadgeClass = (certainty: string): string => {
-  if (certainty === "confirmed") return "reviewed";
-  if (certainty === "contradictory") return "critical";
-  if (certainty === "reported") return "flagged";
-  return "unreviewed";
-};
-
 interface IdObject {
   id: string;
 }

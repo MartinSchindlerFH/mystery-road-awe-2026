@@ -29,7 +29,6 @@ export function EvidenceCard({
     >
       <button
         className={`bookmark-btn ${isBookmarked ? "active" : ""}`}
-        data-action="bookmark"
         aria-label={`Toggle bookmark for ${evidence.id}`}
         onClick={(event) => {
           // Prevent the higher-level handler opening the Detail view from firing

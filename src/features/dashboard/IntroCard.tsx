@@ -1,23 +1,5 @@
 import { useNavigate } from "react-router";
 
-type GoToButtonProps = {
-  to: string;
-  label: string;
-};
-
-function GoToButton({ to, label }: GoToButtonProps) {
-  const navigate = useNavigate();
-  return (
-    <button
-      type="button"
-      className="btn btn-secondary btn-small"
-      onClick={() => navigate(to)}
-    >
-      {label}
-    </button>
-  );
-}
-
 export function IntroCard() {
   return (
     <div className="intro-card">
@@ -64,5 +46,23 @@ export function IntroCard() {
         </div>
       </div>
     </div>
+  );
+}
+
+type GoToButtonProps = {
+  to: string;
+  label: string;
+};
+
+function GoToButton({ to, label }: GoToButtonProps) {
+  const navigate = useNavigate();
+  return (
+    <button
+      type="button"
+      className="btn btn-secondary btn-small"
+      onClick={() => navigate(to)}
+    >
+      {label}
+    </button>
   );
 }

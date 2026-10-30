@@ -17,6 +17,21 @@ type PagesProps = {
   caseFile: CaseFileState;
 };
 
+export function App() {
+  const caseFile = useCaseFile();
+
+  return (
+    <>
+      <LoadingOverlay visible={caseFile.status === "loading"} />
+      <AppHeader />
+      <main className="app-main">
+        <Pages caseFile={caseFile} />
+      </main>
+      <AppFooter />
+    </>
+  );
+}
+
 function Pages({ caseFile }: PagesProps) {
   if (caseFile.status === "loading") return null;
   if (caseFile.status === "error") {
@@ -49,21 +64,6 @@ function Pages({ caseFile }: PagesProps) {
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BookmarkProvider>
-  );
-}
-
-export function App() {
-  const caseFile = useCaseFile();
-
-  return (
-    <>
-      <LoadingOverlay visible={caseFile.status === "loading"} />
-      <AppHeader />
-      <main className="app-main">
-        <Pages caseFile={caseFile} />
-      </main>
-      <AppFooter />
-    </>
   );
 }
 

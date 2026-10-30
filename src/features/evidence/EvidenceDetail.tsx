@@ -105,7 +105,6 @@ export function EvidenceDetail({
           id="evidenceNoteInput"
           className="note-textarea"
           rows={3}
-          data-evidence-id={evidence.id}
           placeholder="Add a private note about this evidence..."
           value={note}
           onChange={(e) => setNote(e.target.value)}
