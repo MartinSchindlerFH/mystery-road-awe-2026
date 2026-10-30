@@ -3,7 +3,6 @@ import { PageSection } from "../../components/PageSection";
 import { CaseFile } from "../../../js/data/caseData";
 import { EvidenceCard } from "./EvidenceCard";
 import type { Evidence } from "../../../js/types";
-import { evidenceMentionsPerson } from "../../../js/utils";
 import { useReducer, useState } from "react";
 import { EvidenceDetail } from "./EvidenceDetail";
 import { useSearchParams } from "react-router";
@@ -119,7 +118,7 @@ function filterEvidence(
       const person = caseFile.people.filter(
         (person) => person.id == personVal,
       )[0];
-      if (!person || !evidenceMentionsPerson(item, person)) matches = false;
+      if (!person || item.personIds.includes(person.id)) matches = false;
     }
     if (matches && locationVal && item.locationIds.indexOf(locationVal) === -1)
       matches = false;

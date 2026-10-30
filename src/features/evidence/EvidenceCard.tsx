@@ -1,11 +1,8 @@
 import { Evidence } from "../../../js/types";
-import {
-  formatDate,
-  getRelevanceBadgeClass,
-  getStatusBadgeClass,
-} from "../../../js/utils";
+import { formatDate } from "../../../js/utils";
 import { useContext } from "react";
 import { BookmarkContext } from "../../App";
+import { Badge, relevanceTone, statusTone } from "../../components/Badge";
 
 type EvidenceCardProp = {
   evidence: Evidence;
@@ -48,12 +45,11 @@ export function EvidenceCard({
       ) : (
         ""
       )}
-      <span className={`badge ${getStatusBadgeClass(evidence.status)}`}>
-        {evidence.status}
-      </span>
-      <span className={`badge ${getRelevanceBadgeClass(evidence.relevance)}`}>
-        {evidence.relevance}
-      </span>
+      <Badge label={evidence.status} tone={statusTone(evidence.status)} />
+      <Badge
+        label={evidence.relevance}
+        tone={relevanceTone(evidence.relevance)}
+      />
       <div>
         {evidence.tags.map((tag) => (
           <span className="tag-chip" key={tag}>

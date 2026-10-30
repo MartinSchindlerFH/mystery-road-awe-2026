@@ -1,9 +1,3 @@
-import type { Evidence, Person } from "./types.js";
-
-export function evidenceMentionsPerson(ev: Evidence, person: Person): boolean {
-  return ev.personIds.indexOf(person.id) !== -1;
-}
-
 export function formatDate(ts: string | undefined): string {
   if (!ts) return "Unknown date";
   const d = new Date(ts);
@@ -18,21 +12,6 @@ export function formatDate(ts: string | undefined): string {
     d.toLocaleTimeString(undefined, { hour: "2-digit", minute: "2-digit" })
   );
 }
-
-export const getStatusBadgeClass = (status: string | undefined): string => {
-  const s = (status || "").toLowerCase();
-  if (s === "reviewed") return "badge-reviewed";
-  if (s === "flagged") return "badge-flagged";
-  return "badge-unreviewed";
-};
-
-export const getRelevanceBadgeClass = (
-  relevance: string | undefined,
-): string => {
-  const r = (relevance || "").toLowerCase();
-  if (r === "relevant") return "badge-relevant";
-  return "badge-unreviewed";
-};
 
 interface IdObject {
   id: string;

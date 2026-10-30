@@ -1,5 +1,4 @@
 import type { CaseFile } from "../../../js/data/caseData.js";
-import { evidenceMentionsPerson } from "../../../js/utils";
 import { LocationList } from "./LocationList.jsx";
 import { PageSection } from "../../components/PageSection.jsx";
 import { PeopleList, type PersonEntry } from "./PeopleList.jsx";
@@ -16,7 +15,7 @@ function countEvidence(file: CaseFile): PersonEntry[] {
   return file.people.map((person) => ({
     person,
     evidenceCount: file.evidence.filter((ev) =>
-      evidenceMentionsPerson(ev, person),
+      ev.personIds.includes(person.id),
     ).length,
   }));
 }

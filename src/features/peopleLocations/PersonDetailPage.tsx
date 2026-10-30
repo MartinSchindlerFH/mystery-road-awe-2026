@@ -1,5 +1,4 @@
 import { Link, useParams } from "react-router";
-import { evidenceMentionsPerson } from "../../../js/utils";
 import { Badge, statusTone } from "../../components/Badge.jsx";
 import { PageSection } from "../../components/PageSection.jsx";
 import type { CaseFile } from "../../../js/data/caseData.js";
@@ -16,7 +15,7 @@ export function PersonDetailPage({ file }: PersonDetailPageProps) {
   if (!person) return <NotFoundPage />;
 
   const related = file.evidence.filter((ev) =>
-    evidenceMentionsPerson(ev, person),
+    ev.personIds.includes(person.id),
   );
 
   return (
