@@ -94,11 +94,11 @@ async function loadTimelineData(): Promise<void> {
   }
 }
 
-export function loadAllData(): Promise<void> {
+export async function loadAllData(): Promise<void> {
   showLoadingOverlay("Loading case file…");
   loadingStepsRemaining = 2;
-  return loadCorePeopleAndLocations().then(function () {
+  return loadCorePeopleAndLocations().then(async function () {
     loadEvidenceData();
-    loadTimelineData();
+    await loadTimelineData();
   });
 }

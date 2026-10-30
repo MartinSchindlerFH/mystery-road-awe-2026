@@ -81,5 +81,5 @@ async function fetchJson<T>(path: string): Promise<T> {
   if (!res.ok) {
     throw new Error("Could not load " + path + " (" + res.status + ")");
   }
-  return res.json() as Promise<T>;
+  return (await res.json()) as Promise<T>;
 }
